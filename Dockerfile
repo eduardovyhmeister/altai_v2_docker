@@ -14,11 +14,7 @@ COPY requirements.txt requirements.txt
 RUN python -m venv /py && \
     /py/bin/pip3 install --upgrade pip && \
     /py/bin/pip3 install -r requirements.txt && \
-    adduser --disabled-password --no-create-home eduardo && \
-    mkdir -p /vol/web/static && \
-    mkdir -p /vol/web/media && \
-    chown -R app:app /vol && \
-    chmod -R 755 /vol
+    adduser --disabled-password --no-create-home eduardo
 # last line es to create a user and avoid to run from the overal system. SECURITY
 
 ENV PATH="/py/bin:$PATH"

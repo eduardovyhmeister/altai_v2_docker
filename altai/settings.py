@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 ALLOWED_HOSTS.extend(
     filter(
         None,
-        os.environ.get('ALLOWED_HOSTS','').split(',')
+        os.environ.get('ALLOWED_HOST','').split(',')
     )
 )
 # Application definition
@@ -140,12 +140,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 #STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles') # this is for heroku deployment ... if other modify
-#STATIC_URL = '/static/'
-STATIC_URL = '/static/static/'
-MEDIA_URL = '/static/media/'
-
-MEDIA_ROOT = '/vol/web/media'
-STATIC_ROOT = '/vol/web/static'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
