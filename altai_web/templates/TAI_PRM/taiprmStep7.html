@@ -1,0 +1,234 @@
+{% extends "Shared/_layout.html" %}
+{% load static %}
+{% load altai_tags_filters %}
+
+
+{%block head%}
+    <title> TAI - PRM - Initiation of Risk Management Process</title>
+{%endblock%}
+
+{% block navbar %}
+{% endblock%}
+
+{% block main1%}{%endblock%}
+
+{%block main2%}
+<div class="row">
+
+
+{% include "Shared/_survey2.html" %}
+
+
+<div class="col-md-9">
+    <div id="surveyContainer">
+        <form method='POST'>
+        {% csrf_token %}
+
+
+            <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; max-width: initial;margin-top: 10px;">
+                    <h3>Likelihood Classification</h3>
+            </div>
+
+            A likelihood or occurrence ranking metric helps measure how frequently an analysed failure mode could occur. The probability of occurrence (Pf) should be based on the failure mode's probability of occurring during operation time. The time frame's homogenisation should be based on an hourly or a 1E-6 hourly base for each failure mode considered. This designation of time frame is used since its commonly used also in criticality analyses.
+            In case the process is sporadic, The last of the following tables could be used. Even though this distinction could obtain different rankings, as long as homogenization is performed for each classification, the shift in ranking would be homogenized in the end analysis. The first of the following tables shows the ranking and occurrence level in function of the description or designation of the occurrence.
+            A critical characteristic of the occurrences ratios for some intrinsic algorithmic processes is that confusion matrixes estimations could estimate them. These numbers could be used directly for specific robustness-based failure modes. We, ASSISTANT, recommend its use if readily available. This approach is considered within the pipeline process of the proposed framework.
+
+            </br>
+            <h3> Occurrence Ranking Criteria Likelihood or Level of Occurrence in function of probabilities as a single failure mode</h3>
+
+            <div style="display: inline-block; width:110%;">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col"> Occurrence description of the Failure mode</th>
+                        <th scope="col"> Severity Rank  </th>
+                        <th scope="col"> Failure severity Classification </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div style="display: inline-block; width:80%;">
+                            <tr>
+                                <th> Once a week. High probability is defined as a single Pf > 0.20 of the overall probability of failure during the item operating interval. </th>
+                                <th> 10 </th>
+                                <th> High Probability (Level A or I)</th>
+                            </tr>
+                            <tr>
+                                <th> Once every two weeks. Probability is defined as a single Pf > 0.10 but 0.20 > Pf of the overall probability of failure during the item operating time interval. </th>
+                                <th> 7-9 </th>
+                                <th> Probable (Level B or II) </th>
+                            </tr>
+                            <tr>
+                                <th> Once a month. Occasional is defined as a single Pf > 0.01 but 0.1 > Pf of the overall probability of failure during the item operating time interval </th>
+                                <th> 4-6 </th>
+                                <th>Occasional (Level C or III)</th>
+                            </tr>
+                            <tr>
+                                <th> Once every two months. Remote is defined as a single 0.01 > Pf > 0.001 of the overall probability of failure during the item operating time interval.  </th>
+                                <th>2-3</th>
+                                <th> Remote (Level D or IV)</th>
+                            </tr>
+                            <tr>
+                                <th>  An unlikely probability of occurrence during the item operating time interval. Unlikely is defined as a single 0.001 > Pf of the overall probability of failure during the item operating time interval.    </th>
+                                <th> 1 </th>
+                                <th> Unlikely (Level E or V)</th>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            </br>
+            Each occurrence is considered during the system/part/sub-part/component operating time or the ratio of item build with failing conditions during the operating time. The normalisation comes from the operating time specification (e.g. hourly or 1E-6 hourly).
+            </br>
+            <h3>  Occurrence description of the Failure mode Based on Ratios </h3>
+            <div style="display: inline-block; width:110%;">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">  Occurrence description of the Failure mode </th>
+                        <th scope="col"> Severity Rank  </th>
+                        <th scope="col"> Ratio </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div style="display: inline-block; width:80%;">
+                            <tr>
+                                <th> Very High (The Failure is Very likely to Occur) </th>
+                                <th> 10 </th>
+                                <th> 1 in 2 </th>
+                            </tr>
+                            <tr>
+                                <th> Very High </th>
+                                <th> 9 </th>
+                                <th> 1 in 8 </th>
+                            </tr>
+                            <tr>
+                                <th> High (The failure will occur occasionally) </th>
+                                <th> 8 </th>
+                                <th> 1 in 20 </th>
+                            </tr>
+                            <tr>
+                                <th> High </th>
+                                <th> 7 </th>
+                                <th> 1 in 40 </th>
+                            </tr>
+                            <tr>
+                                <th> Moderate  </th>
+                                <th> 6 </th>
+                                <th> 1 in 80 </th>
+                            </tr>
+                            <tr>
+                                <th> Moderate  </th>
+                                <th> 5 </th>
+                                <th> 1 in 400 </th>
+                            </tr>
+                            <tr>
+                                <th> Moderate  </th>
+                                <th> 4 </th>
+                                <th> 1 in 1000 </th>
+                            </tr>
+                            <tr>
+                                <th> Low (The failure will rarely occur)  </th>
+                                <th> 3 </th>
+                                <th> 1 in 4000 </th>
+                            </tr>
+                            <tr>
+                                <th> Low  </th>
+                                <th> 2 </th>
+                                <th> 1 in 20000 </th>
+                            </tr>
+                            <tr>
+                                <th> Remote (The failure is unlikely to occurr)  </th>
+                                <th> 1 </th>
+                                <th> 1 in 1000000 or less  </th>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Failure Mode </th>
+                    <th scope="col"> Severity Classification</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for j in form.FailureModes.field.queryset %}
+                        {% for k in ids %}
+                            {% if j.id == k %}
+                                {% with identificator=forloop.counter0 %}
+                                <tr>
+                                    <th scope="row"> {{j.name}} </th>
+                                    <th>
+                                        {% for l in range %}
+                                            <div class="form-check form-check-inline">
+                                                    {% if forloop.counter == taiprm.O|indexing:identificator %}
+                                                        <input class="form-check-input" type="radio" name={{j.name}} value={{forloop.counter}} checked>
+                                                    {% else %}
+                                                        <input class="form-check-input" type="radio" name={{j.name}} value={{forloop.counter}}>
+                                                    {% endif %}
+                                                <label class="form-check-label" for={{j.name}}>
+                                                {{forloop.counter}}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    </th>
+                                    <th></th>
+                                </tr>
+                                {% endwith %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            <!--      Q1    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Is there any recommendation/alternative for better classify/rank the occurrence of the AI based on their ethical risks? 
+                    </h5>
+                        {% for radio in form.T7Q1 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T7Q1_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q1                  -->
+            <!--      Q2    ok                -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        If yes to previous question, Please explain if possible:
+                    </span>
+                    </h5>
+                    {{ form.T7Q2 }}
+                    </div>
+                </div>
+            </div>
+            <!--      Q2    ok        -->
+
+            <button class="btn btn-primary card-btn" style="text-align: center;" name="button1"> Update </button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block footer%}
+{%endblock%}
+
+{%block lastk%}
+{% endblock %}

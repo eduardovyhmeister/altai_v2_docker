@@ -1,0 +1,294 @@
+{% load static %}
+
+{%block head%}
+    <title> TAI - PRM - Report </title>
+{%endblock%}
+
+{% block main1%}{%endblock%}
+
+{%block main2%}
+<div class="row">
+<div class="col-md-9">
+    <div id="surveyContainer">
+
+            <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; max-width: initial;margin-top: 10px;">
+                    <h1> TAI - PRM - Report  </h1>
+
+                    <hr style="width:50%;text-align:left;margin-left:0">
+                        <div style="display: inline-block; width:110%;">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col"> Name of TAI - PRM </th>
+                                    <th scope="col"> User  </th>
+                                    <th scope="col"> Last Update </th>
+                                    <th scope="col"> AI intrinsic risk level </th>
+                                    <th scope="col"> Main Outcome </th>
+                                    <th scope="col"> Linked ALTAI </th>
+            
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <div style="display: inline-block; width:80%;">
+                                        <tr>
+                                            <th> {{taiprm.title}} </th>
+                                            <th> {{taiprm.author}} </th>
+                                            <th> {{taiprm.last_modified}} </th>
+                                            <th> {{taiprm.intrinsic_risk}} </th>
+                                            <th> {{taiprm.action}} </th>
+                                            <th> {{thealtai.title}} </th>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    <hr style="width:50%;text-align:left;margin-left:0">
+            </div>
+
+            This report is constructed based on the tool TAI-PRM created in the assistant project. Further information related to this tool and its use can be seen at https://assisstant/insight-centre.org
+            Following table (Table I) shows the risk register for the analysis performed, while following table (Table II) describe the recomendations based on the analysis performed.
+        </br>
+        </br>
+
+
+        <h1> TAI - PRM - Report  </h1>
+
+        <hr style="width:50%;text-align:left;margin-left:0">
+            <h3>  Risk Register - Description </h3>
+
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th > Update - Date </th>
+                    <th > ID </th>
+                    <th > Linked ID </th>
+                    <th > Item </th>
+                    <th > mode/Phase/Process </th>
+                    <th > Driver </th>
+                    <th > System </th>
+                    <th > Subsystem </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                    {% for j in form.FailureModes.field.queryset %}
+                        {% for k in ids%}
+                            {% if j.id == k %}
+                                <tr>
+                                    <th style="font-size: 10px;"> {{taiprm.last_modified}} </th>
+                                    <th style="font-size: 10px;"> {{taiprm.title}}{{j.pk}} </th>
+                                    <th style="font-size: 10px;"> 
+                                        <div class="input-group" >
+                                            <input type="text" class="form-control" placeholder="Failure Mode ID" name={{j.name}} style="font-size: 10px;">
+                                        </div>
+                                    </th>
+                                    <th style="font-size: 10px;"> {{taiprm.title}} </th>
+                                    <th style="font-size: 10px;"> 
+                                        <select class="form-select" aria-label="Default select example" name="{{j.name}}">
+                                            <option selected> - </option>
+                                            <option value="1">Update</option>
+                                            <option value="2">User input</option>
+                                            <option value="3">Algorithm run</option>
+                                            <option value="4">Update</option>
+                                            <option value="5">Deployment</option>
+                                            <option value="6">Decomissioning</option>
+                                            <option value="7">Training</option>
+                                        </select>
+                                    </th>
+                                    <th style="font-size: 10px;"> {{j.driver}} </th>
+                                    <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="System" aria-label="Username" aria-describedby="basic-addon1"> </th>
+                                    <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="Subsystem" aria-label="Username" aria-describedby="basic-addon1"> </th>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            <h3>  Risk Register - Failure Mode Description and Classification </h3>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th > Failure Mode </th>
+                    <th > Failure Description </th>
+                    <th > Failure Mode Causes </th>
+                    <th > Local effect </th>
+                    <th > Cascade effect </th>
+                    <th > Global effect </th>
+                    <th > remarks </th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+
+                    {% for j in form.FailureModes.field.queryset %}
+                        {% for k in ids%}
+                            {% if j.id == k %}
+                                <tr>
+                                    <th style="font-size: 10px;"> {{j.name}} </th>
+                                    <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="Description" aria-label="Username" aria-describedby="basic-addon1">  </th>
+                                    <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="Causes" aria-label="Username" aria-describedby="basic-addon1">  </th>
+                                    <th> <input class="form-check-input" type="checkbox" name={{x.name}} value={{forloop.counter}}> </th>
+                                    <th> <input class="form-check-input" type="checkbox" name={{x.name}} value={{forloop.counter}}> </th>
+                                    <th> <input class="form-check-input" type="checkbox" name={{x.name}} value={{forloop.counter}}> </th>
+                                    <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="Remarks" aria-label="Username" aria-describedby="basic-addon1">  </th>
+                                </tr>
+                        {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h3>  Recommendations and KPIs </h3>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th > Failure Mode </th>
+                    <th > Severity </th>
+                    <th > Ocurrence </th>
+                    <th > Detection </th>
+                    <th > Detection Method </th>
+                    <th > RPN </th>
+                    <th > GRPN </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                    {% for j in form.FailureModes.field.queryset %}
+                        {% for k in ids%}
+                            {% if j.id == k %}
+                        <tr>
+                            <th style="font-size: 10px;"> {{j.name}} </th>
+                            <th> {{taiprm.S|indexing:forloop.counter0}} </th>
+                            <th> {{taiprm.O|indexing:forloop.counter0}} </th>
+                            <th> {{taiprm.D|indexing:forloop.counter0}} </th>
+                            <th> 
+                                <select class="form-select" aria-label="Default select example" name="{{j.name}}">
+                                    <option selected> - </option>
+                                    <option value="1">Training</option>
+                                    <option value="2">Visual Inspection</option>
+                                    <option value="3">Algorithm</option>
+                                    <option value="4">Alarm</option>
+                                    <option value="5">User Identification</option>
+                                    <option value="6"> Error </option>
+                                    <option value="7"> Unexpected outcome</option>
+                                </select>
+                            </th>
+                            <th> {{taiprm.RPN|indexing:forloop.counter0}} </th>
+                            <th> {{taiprm.GRPN}} </th>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            <h3>  Remarks and additional information </h3>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th > Failure Mode </th>
+                    <th > Remarks </th>
+                    <th > Recommended actions </th>
+                    <th > Correction Responsibility </th>
+                    <th > Action status </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                    {% for j in form.FailureModes.field.queryset %}
+                        {% for k in ids%}
+                            {% if j.id == k %}
+                        <tr>
+                            <th> {{j.name}}  </th>
+                            <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="Remarks" aria-label="Username" aria-describedby="basic-addon1"> </th>
+                            <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="Actions" aria-label="Username" aria-describedby="basic-addon1"> </th>
+                            <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="Responsible" aria-label="Username" aria-describedby="basic-addon1"> </th>
+                            <th> 
+                                <select class="form-select" aria-label="Default select example" name="{{j.name}}">
+                                    <option selected> - </option>
+                                    <option value="1"> In process </option>
+                                    <option value="2"> Finished </option>
+                                    <option value="3"> Delayed </option>
+                                    <option value="4"> Cancelled </option>
+                                    <option value="5"> Other </option>
+                                </select>
+                            </th>
+
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        <hr style="width:50%;text-align:left;margin-left:0">
+
+        <h3> Risk Appetite  </h3>
+
+        The risk appetite imposes the corrective actions for the risks (i.e. treat, transfer, terminate or tolerate) in the function of the risk scores and the desire of the user to deal with their risk components. Therefore, these specifications should be defined in the risk policies and easily translated to functional risk matrixes. 
+        The risk appetite used in the analysis correspond to:
+
+        <h3> Risk Appetite in function of GRPN </h3>
+        <div style="display: inline-block; width:110%;">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col"> Risk Level </th>
+                        <th scope="col"> Tolerate Risk Score Range  </th>
+                        <th scope="col"> Treate Risk Score Range </th>
+                        <th scope="col"> Terminate Risk Score Range </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div style="display: inline-block; width:80%;">
+                            <tr>
+                                <th> High Risk </th>
+                                <th> {{taiprm.R2_1}} </th>
+                                <th> {{taiprm.R2_2}} </th>
+                                <th> {{taiprm.R2_3}} </th>
+                            </tr>
+                            <tr>
+                                <th> Limited Risk </th>
+                                <th> {{taiprm.R3_1}} </th>
+                                <th> {{taiprm.R3_2}} </th>
+                                <th> {{taiprm.R3_3}} </th>
+                            </tr>
+                            <tr>
+                                <th> Low Risk </th>
+                                <th> {{taiprm.R4_1}} </th>
+                                <th> {{taiprm.R4_2}} </th>
+                                <th> {{taiprm.R4_3}} </th>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            </br>
+
+            * This table represent the risk levels for the different intrinsic risk levels of AI assets. If you want to modify consider, based on the definitions of Step 2 (reported in step 3), which intrinsic risk you should consider for modification. The table is read from left to right increasing from the level of previous column (+1) up to the limit set on the current column.
+
+        </br></br>
+
+        <h3> Definitions for results </h3>
+
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block footer%}
+{%endblock%}
+
+{%block lastk%}
+{% endblock %}

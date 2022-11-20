@@ -1,0 +1,74 @@
+{% extends "Shared/_layout.html" %}
+{% load static %}
+
+{%block head%}
+    <title> How To Complete - ALTAI</title>
+{%endblock%}
+
+
+{% block navbar %}
+
+    {% if request.user.is_authenticated %}
+        {% include "Shared/_Navbarin.html" %}
+    {% else %}
+        {% include "Shared/_NavbarOut.html" %}
+    {% endif %}
+
+{% endblock%}
+
+{%block main2%}
+<div class="row align-items-center">
+    <div class="col-md-8 offset-2 text-justify">
+        <h2> How to complete ALTAI </h2>
+        <p>
+            ALTAI is best completed involving a multidisciplinary team of people from within or outside your organisation with specific competences or expertise on each of the 7 requirements and related questions such as:
+            <ul>
+                <li>AI designers and AI-developers of the AI system.</li>
+                <li>Data scientists.</li>
+                <li>Procurement officers or specialists.</li>
+                <li>Front-end staff that will use or work with the AI system.</li>
+                <li>Legal/compliance officers.</li>
+                <li>Management.</li>
+            </ul>
+        </p>
+        <p>
+            If you do not know how to address a question and find no useful help on the AI Alliance page, it is advised to seek outside counsel for assistance.
+        </p>
+        <p>
+            For each question ALTAI provides guidance in the <b>glossary</b> and by referencing to the relevant parts of the Ethics Guidelines for Trustworthy AI and examples in <b>text boxes alongside the questions</b>.
+        </p>
+        <p>
+            Upon completing ALTAI, the following will be generated:
+            <ul>
+                <li>
+                    A visualisation of the self-assessed level of adherence of the AI system and it's use with the 7 requirements for Trustworthy AI. These results are based on your organisation's own assessment and are solely meant to help you identify the areas of improvement.
+                </li>
+                <li>
+                    Recommendations based on the answers to particular questions.
+                </li>
+            </ul>
+
+        </p>
+        <div class="border p-3 mb-3 rounded">
+            <h3> Disclaimer  </h3>
+            <p> ALTAI is a self-assessment tool. The individual or collective members of High Level Expert Group on AI do not offer any guarantee as to the compliance of an AI-system assessed by using ALTAI with the 7 requirements for Trustworthy AI. Under no circumstances are the individual or collective members of the High Level Expert Group on AI liable for any direct, indirect, incidental, special or consequential damages or lost profits that result directly or indirectly from the use of or reliance on (the results of using) ALTAI. </p>
+        </div>
+        <p> <b>The self-assessment results and the list of recommendations are confidential and available to you only. </b>   </p>
+        <p>
+            ALTAI has seven sections, corresponding to the 7 requirements for Trustworthy AI. You can move between the sectons by clicking on the side menu.
+        </p>
+        <h2>Colour code</h2>
+        <p>Questions with * at the end of the sentance are mandatory in the ALTAI tool.</p>
+        <div style="background:#0000ff0f; border-style: solid; border-color: gray; border-radius: 10px; margin: 5px 0 5px 0;">
+            Questions with white background are aimed at (describing) the features of the AI system.</div>
+        <div class="root-blue-question">Answers to blue questions will contribute to recommendations.</div>
+        <div class="root-red-question">Text in red allows you to self-assess your organisation's compliance with the respective requirement.</div>
+        <div class="root-green-question">Text in green allows you to define based on your experience if the questions from the questionaire are suitable for your case and domain of interest. These question can be grading or positve/negative questions.</div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+{%block lastk%}
+{% endblock %}

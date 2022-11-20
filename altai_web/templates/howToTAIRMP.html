@@ -1,0 +1,187 @@
+{% extends "Shared/_layout.html" %}
+{% load static %}
+
+{%block head%}
+    <title> How To Complete - TAI- RMP</title>
+{%endblock%}
+
+
+{% block navbar %}
+
+    {% if request.user.is_authenticated %}
+        {% include "Shared/_Navbarin.html" %}
+    {% else %}
+        {% include "Shared/_NavbarOut.html" %}
+    {% endif %}
+
+{% endblock%}
+
+{%block main2%}
+<div class="row align-items-center">
+    <div class="col-md-8 offset-2 text-justify">
+        <h2> How to complete TAI-PRM </h2>
+        <p>
+            TAI-PRM is best completed involving a multidisciplinary team of people from within or outside your organisation with specific competences or expertise on each of the 7 requirements and related questions such as:
+            <ul>
+                <li>AI designers and AI-developers of the AI system.</li>
+                <li>Data scientists.</li>
+                <li>Procurement officers or specialists.</li>
+                <li>Front-end staff that will use or work with the AI system.</li>
+                <li>Legal/compliance officers.</li>
+                <li>Management.</li>
+            </ul>
+        </p>
+
+
+        <p>
+            Upon completing TAI-PRM, the following will be generated:
+            <ul>
+                <li>
+                    A set of Failure modes that should pay attention to the AI asset and, at the same time, a risk management process (and its components) in order to perform ethical risk management.
+                </li>
+                <li>
+                    Recommendations based on the answers to particular questions.
+                </li>
+                <li>
+                    Documentation useful to handle risks.
+                </li>
+            </ul>
+        </p>
+
+        <div class="border p-3 mb-3 rounded">
+            <h3> Disclaimer  </h3>
+            <p> TAI-PRM is based on the ISO-31000. The process  do not offer any guarantee as to the compliance of an AI-system assessed by using ALTAI with the 7 requirements for Trustworthy AI. Under no circumstances are the individual on AI liable for any direct, indirect, incidental, special or consequential damages or lost profits that result directly or indirectly from the use of or reliance on (the results of using) ALTAI. </p>
+        </div>
+
+
+        <h2> Fundamentals </h2>
+
+        <p> The following Figure provides a general level of detail for the benchmark framework for e-risk management. This benchmarking framework extends the ISO Risk Management Process by incorporating several supporting tasks that secure an implementation process of ethical and regulatory considerations in parallel with the classical ISO process (as shown in Figure \ref{fig:Figure5}). The analogical components of the presented framework with the ISO process is as follows:</p>
+        <ul>
+            <li>
+                All the boxes with the exception of the box named "Execute e-Risk Management Process" (EeRMP), correspond to the component of "Establishing the Context" of the ISO process. A more detailed process has been developed here in order to incorporate current and future regulations that could be defined for AI assets.
+            </li>
+            <li>
+                The box EeRMP does also contain an "establishing the Context" component, but it only performs the accumulation and use of the context defined in previous steps.
+            </li>
+            <li>
+                The box named EeRMP contains all the iso processes within it, exception of the communication and consultation. This is done since the combination of the architecture and policies should impose over the risk management process the frequency and channels of communication.
+            </li>
+            <li>The box named EeRMP does contain the ISO-defined "Monitoring and Review" process but in order to improve the pipeline flow process, it was defined as a main component after the ISO-defined "Risk Evaluation" and "Risk Treatment" process only (i.e. is not connected directly to the context or the risk identification process). Furthermore, framework updating is enforced in the pipeline structure if new regulations or considerations are required to be imposed; therefore, the reviewing process has partially been integrated within the framework itself.</li>
+        </ul>
+
+        <p>
+        The Figure, and the general structure of the benchmark process, is based on a UML recursive pipeline approach. In this figure the white boxes represent activities to be performed by the stakeholders involved in the AI \replaced[id=author]{RMP}{risk management process}. The diamond boxes correspond to check components, while the colored boxes correspond to a whole process that should be described by another UML benchmark process (future works). Finally, The Black dots correspond to an initial point of the pipeline, while the circle with a cross in it represent the end point and termination
+        </p>
+
+        <div>
+            <a><img src="{% static 'img/TAIPRM1.jpg' %}" style="margin-left: 10px; margin-right: 10px; max-height: 800px; margin-bottom: 10px; max-width: auto;" alt="Insight Centre for Data Analytics Logo" /> </a>
+        </div>
+
+        <p>Following the Figure, the first process identifies or confirms that AI elements are considered within the system, subsystem, or component under evaluation. This process implies understanding and differentiation between AI and other algorithmic processes that should not be classified as AI. </p>
+        <p>An AI is a system designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimisation), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). This definition implies that data is used for both learning and act upon. Therefore, those algorithms that have not included these processes should not be considered AI.</p>
+        <p>If an AI algorithm is considered for evaluation or is embedded within the system, the e-Risk Identification and Classification process occurs. This process focuses on defining the AI elements' intrinsic level of risk under regulatory conditions. This classification is based on the AI act and includes modification if new regulations are defined for the AI elements.</p>
+        <p>As defined in the AI act, the AI element can be classified as Unacceptable, High, Limited and Minimal Risk. After the classification and identification, if the AI element has an unacceptable risk (i.e. yes, in Diamond 1), the AI element's modifications can be done to secure that a lower level of risk is achieved on the AI element. These modifications are based on the idea that they can affect the technical considerations that make the AI element unacceptable.</p>
+        <p>Nevertheless, if the domain and scope of implementation give the limitation of unacceptability, the AI would not be able to be modified to reduce its level of risk. If these modifications are possible (yes, in diamond 2), the modifications should be implemented (the process named AI modifications). In it, the required modifications of the scope, data managed, or other conflicts that limit the AI element are re-defined. Otherwise (no in diamond 2), the risk management process is terminated since the AI element cannot be developed, implemented or used. If the AI asset is already under use, the considerations for decommissioning should be made.</p>
+        <p>Following the figure, if the AI risk component has an acceptable intrinsic level (no in diamond 1), the process of AI Scope Definition occurs. This process establishes what components, based on the trustworthy requirements, the AI acts, and other regulations should be considered during the risk assessment processes. </p>
+        <p>After establishing an initial context regarding the trustworthy guidelines requirements, a secondary context regarding values to be integrated within the system, if any, is performed. This process involves establishing what values and requirements can be incorporated that are sound to regulations. In case contradictory values exist, this process involves using decision-making processes depending on the interdependencies between values components and criteria. Finally, these tools should allow the evaluation from several stakeholders' perspectives. Therefore, they can be used to homogenise the perspectives, generating the most suitable combinations of values and the hierarchy they should be integrated into the systems.</p>
+        <p>After the context of the risk management process is done, the risk assessment, risk treatment, and risk monitoring and review take place. All these previously mentioned components directly specified in the ISO 31000 are encapsulated within the Execute e-risk management process.</p>
+        <p>The ISO 31000 framework established that the risk management process should be dynamic and continual. The endpoint is shown in the figure only helps to visualise the process as a pipeline system. Nevertheless, the idea behind the benchmark e-risk framework is to be periodically used for e-risk management. Recursive processes are included within the previously described steps, and they should be reinitiated as impactful modifications are made over the system, the companies policies, or the regulations. We specify these impactful modifications as at least one of the following causes:</p>
+        
+        <ul>
+            <li>
+                An additional part has been added to the overall system architecture
+            </li>
+            <li>
+                Modifications have been made on the interdependencies of the system's parts that have hierarchically big enough that force other parts (i.e. subsystems) also to modify their connectivity or data usage.
+            </li>
+            <li>
+                The data source or type are modified
+            </li>
+            <li>
+                New functionalities have been added to the AI (e.g. automatisation of training processes)
+            </li>
+            <li>
+                Interfaces are modified
+            </li>
+            <li>
+                The scope of usage or deployment changes.
+            </li>
+            <li>
+                Regulations are modified that affect the risk level of the systems or its parts
+            </li>
+        </ul>
+
+
+        <h2> Failure Mode and Criticality Analyses - FMECA </h2>
+
+        <p> The Failure Modes and Effects Analysis -- FMEA -- is a risk assessment methodology that encompasses the management of potential failures within a system to determine their impact. </p>
+        <p> The Figure outlines a high-level view of the process. Each step is explained in the following sections and blended with trustworthy needs to extend the framework with ethical considerations needed for the management of AI artefacts: </p>
+        <div>
+            <a><img src="{% static 'img/TAIPRM2.jpg' %}" style="margin-left: 10px; margin-right: 10px; margin-bottom: 10px; max-height: 280px; max-width: auto;" alt="Insight Centre for Data Analytics Logo" /> </a>
+        </div>
+        <p>The first step focuses on setting up the system's physical and operational constraints -- e.g. system functions, interfaces, expected performance, and most relevant identified failures. The trustworthy AI requirements must be considered to apply FMEA to AI artefacts in manufacturing. Some associated risks are described in the AI act \cite{european_commission_regulation_2021}), which needs to be translated and added to others specific to the industrial scope. For example, explainability must be considered for AI assets that support decision-making processes - based on numeral 5.2.4. of the AI ACT.</p>
+        <h3> Development of System Functional Block Diagrams </h3>
+        <p>This step focuses on providing supporting documents such as: functional block diagrams, reliability block diagrams, and the use of visual tools to describe operations, interrelationships and dependencies of the functions of a system or equipment. </p>
+        <p>Worksheets to track failure modes can be found at: https://github.com/lebriag/TAI-PRM/tree/main/Support/Risk\%20register and are essential. In addition, supportive tools for risk analysis can be used if needed. Foremost among these are system/AI boundary description, system/AI design specification, safety, security, safeguards, and control system details, cause and effect matrix.</p>
+        <p>The level of detail should be proportional to the risk level of the components involved. This means that the higher impact if a failure materialises, the higher must be the information supporting it</p>
+        
+        <h3> Identify Failure Modes </h3>
+        <p>Failure modes can be correlated to the descriptive causes of system failures. Therefore, the following considerations must be taken in its identification -- systematic or not: premature or spurious operation; not operate when required; intermittent operation; failure to stop operation when required; loss of output or failure during operation; and degraded output or degraded operational capability.</p>
+        <p>Failure modes, as described in the FMEA, neither include the considerations of the industrial context nor define specificity for AI and their trustworthy requirements. For example, failure modes are already defined in IT safety at \cite{siva_kumar_failure_2019}. In addition, FMEA is well known in software development due to its feasibility of extending the failure modes. It has been proven to be a methodology suitable for trustworthy AI considerations; however, early forays show it only limited to one requirement -- e.g. fairness.</p>
+        <p>All the trustworthy AI requirements on the Trustworthy AI guidelines can be incorporated into the failure modes through different alternatives: the ''Absence of supportive norms'' and ''Norm transgression''; to incorporate social responsibility within the considerations of a company to improve the understanding of the impact of the risk if materialised \cite{duckworth_social_2019}; to detail the failure modes through a well-defined framework that assign responsibilities to the personas.</p>
+        <p>In TAI-PRM, the extension of failure modes was made through the third option, incorporating eleven ethical-based failure families of functionalities. As a result, the failure modes scope has been extended with failures on: (1) robustness, (2) safety, (3) transparency, (4) accountability, (5) societal well-being, (6) environmental well-being, (7) human agency and oversight, (8) privacy, (9) data governance, (10) bias -- diversity, non-discrimination, and fairness--, and (11) users values. The seven key requirements have been grounded into eleven different failure families due to the impact of some of these are different under a failure, although from a conceptual perspective, they were grouped into the same category in the Trustworthy AI guidelines.</p>
+        <p>Finding failure modes is based on the assumption that if an artefact stops operating as expected, technical and social features are translated into observable conditions or contingencies measured by supporting protocols -- AI technical and non-technical operational modes. Furthermore, for the analysis, the conditions or contingencies possess similarities that allow them to be grouped by a driver for failures. These can be physical, internal social, data, user/system interface, and algorithm.</p>
+        <p>The physical driver encompass: power supply, communication/data link cables, robot parts, wearable, lenses, and sensors. The internal social drivers are related to the stakeholders' values and biases imposed over the AI component, for example, those related to enterprise social responsibilities. The data drivers relate to any source that could drive the failure of the trustworthiness of AI elements from data, for example, biases, quality, quantity, and security. The user and system interface driver is linked to inadequate use of user interfaces and system inputs, including the absence of information display, tutorials and guidelines. Additionally, any trustworthy/ethical consideration of the human-AI interaction, like the excess of trust from users on repeated AI operations, can be included. Finally, the algorithm drivers are the processes to be followed in problem-solving operations performed by the AI artefact.</p>
+        <p>The following Figure schematises the approach to link failure modes with the operational modes.</p>
+        <div>
+            <a><img src="{% static 'img/TAIPRM3.jpg' %}" style="margin-left: 10px; margin-right: 10px;margin-bottom: 10px; max-height: 280px; max-width: auto;" alt="Insight Centre for Data Analytics Logo" /> </a>
+        </div>
+
+        <p>Each of the eleven previously defined failure modes domains, derived from the seven trustworthy AI requirements, can be tested over the driver of the failure. The Figure shows that these drivers must trigger a warning (flag) that defines a failure mode throughout the operation modes. This means that the failure mode will be identified as the driver of the operation mode failure plus the specification over which ethical-based general failure modes families are linked. For example, the failure of robustness by misuse of the interface system in the Figure.</p>
+        
+        <h3> Core FMEA process </h3>
+        <p>The fourth step comprises three strands are executed in parallel as follows:</p>
+        <h5> Identify Failure Detection Methods </h5>
+        <p>This phase is based on the identification, evaluation, management and definition used to detect and warn about failure modes. Typically, the detection implies using visual or audible signals for users to highlight a risk. In the case of the AI component, this implies that specific metrics, methods, and features are linked to risk conditions, providing specific outputs when failures are detected.</p>
+        <p>Ideally, adequate time must be available to react if the system's dynamic allows it, imposing a restriction on the approaches that can be used under human-centric considerations. This definition must be linked to the intrinsic risk level of the AI component -- unacceptable or high risk --defining procedures for human interventions.</p>
+        <p>An analysis must be done to understand whether these require other instruments such as: control devices, circuit breakers, or a combination of the previous for failure detection. The lack of detection methods can be linked to system robustness, security, and transparency failure modes</p>
+        
+        <h5> Analyse Effects </h5>
+        <p>This step analyses the failure mode consequences. Depending on the AI functionalities, a cascade effect can occur, implying a comprehensive analysis of the AI interactions for complex architectures. The goal is to identify the end effect of any failure and its impact.</p>
+        
+        <h5> Identify Corrective Actions </h5>
+        <p>The third parallel step includes contingency actions that can: reduce the likelihood of the failure mode, reduce the intrinsic risk level of the AI artefact, secure compliance with legal requirements, secure the safe operation of the overall system, and define recovering actions for failing conditions, increase the human-centred actions, and secure each AI trustworthy requirement when applicable.</p>
+        <p>The use of three levels of classification is recommended for contingency actions named ''immediate attention'', ''serious consideration'', and ''future improvement decisions''. </p>
+        
+        <h3> Ranking </h3>
+        <p>The ranking establishes soft metrics to keep track of the failure modes. It can be used as a representative base of KPIs for estimating the trustworthy AI state.</p>
+        <p>The ranking involves setting values for\footnote{Tables for the processes of ranking, tabulate and report are available at: \url{https://github.com/lebriag/TAI-PRM/tree/main/Support/RPN\%20ranking\%20tables}}: the occurrence/likelihood of a failure mode to take place, the severity of the consequences in case the failure condition takes place, and the capability of users and systems to detect failing conditions. Ideally, these metrics should be supported by historical information. Nevertheless, expert judgment can be used to rank them. </p>
+        <p>The Risk Priority Number index (RPN) with respect to a concrete failure mode enables the normalisation of the AI artefacts risks. The formula to calculate it is in Equation 1, corresponding to the multiplication of three indexes: severity, likelihood and detection ranking:</p>
+        <P> RPN_item = SOD </p>
+        <p>Where S is the severity, O the occurrence or likelihood, and D corresponds to the detection ranking. The higher the RPN is, the higher the risk involved in the analysed failure mode for that AI component, therefore the item or component can be identified as a source of a failing condition with different degrees of impact.
+            Furthermore, to evaluate the global risk of an AI artifact on different failure modes (Global Risk Priority Number index), it is needed to perform the sum of the RPN of each item i to its corresponding failure mode ratio as proposed in the following equation</p>
+        <p>
+            GRPN_item = sumi=1 to n of RPN_i*alpha_i
+        </p>
+        <p>
+            Where $i$ represents the different failure mode linked to the same source; $n$ is the number of failure modes of an specific component; and $\alpha_i$ is the failure mode ratio and represents the part attributed to a concrete failure mode if the failure materializes. This means the percentage of the AI artifact to fail with an specific failure mode.
+        </p>
+        <h3> Tabulate and Report </h3>
+        <p>The reporting focuses on keeping a documentation plus a repository where detailed information is stored for users to trace (understand) the failure modes and their effects, existing risks, control measures, safeguards, and related recommendations with respect to the specific system.
+            Furthermore, the Risk Register is a repository of the risks identified. It includes diverse information that helps to keep track of the propositions made for risk management, KPIs and, among other, relevant information related to the methods used for evaluating and applying contingencies on risks.
+        </p>
+
+        <p> <b>The self-assessment results and the list of recommendations are confidential and available to you only. </b>   </p>
+        <h2>Colour code</h2>
+        <p>Questions with * at the end of the sentance are mandatory in the TAIPRM tool.</p>
+        <div style="background:#0000ff0f; border-style: solid; border-color: gray; border-radius: 10px; margin: 5px 0 5px 0;">
+            Questions with white background are aimed at (describing) the features of the AI system.</div>
+        </div>
+</div>
+{% endblock %}
+
+
+
+{%block lastk%}
+{% endblock %}

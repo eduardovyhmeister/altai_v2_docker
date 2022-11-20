@@ -1,0 +1,494 @@
+{% extends "Shared/_layout.html" %}
+{% load static %}
+
+
+{%block head%}
+    <title>ALTAI - Societal and Environmental Wellbeing</title>
+{%endblock%}
+
+{% block navbar %}
+{% endblock%}
+
+{% block main1%}{%endblock%}
+
+{%block main2%}
+<div class="row">
+
+    {% include "Shared/_survey.html" %}
+
+    <div class="col-md-9">
+        <div id="surveyContainer">
+            <form method='POST'>
+            {% csrf_token %}
+    
+            <div class="panel-heading card-header" style="display: inline-block; width:80%;">
+                <div class="sv_header__text" >
+                    <h3><span style="position: static;">Societal and Environmental Wellbeing</span></h3>
+                    <h5>
+                    <span style="position: static;"> In line with the principles of fairness and prevention of harm, the broader society, other sentient beings and the environment should be considered as stakeholders throughout the AI system's life cycle. Ubiquitous exposure to social AI systems in all areas of our lives (be it in education, work, care or entertainment) may alter our conception of social agency, or negatively impact our social relationships and attachment. While AI systems can be used to enhance social skills, they can equally contribute to their deterioration. This could equally affect peoples' physical and mental well-being. The effects of AI systems must therefore be carefully monitored and considered. Sustainability and ecological responsibility of AI systems should be encouraged, and research should be fostered into AI solutions addressing areas of global concern, for instance the Sustainable Development Goals. Overall, AI should be used to benefit all human beings, including future generations. AI systems should serve to maintain and foster democratic processes and respect the plurality of values and life choices of individuals. AI systems must not undermine democratic processes, human deliberation or democratic voting systems or pose a systemic threat to society at large.</span></h5>
+                </div>
+            </div>
+
+            <div style="z-index: -2;float:right;width:19%;font-size: x-small;" class="root-green-question">
+                Do you find these questions relevant for AI risk management? </br>
+                1. Not at all </br> 2. Slightly </br> 3. Neither Relevant nor Irrelevant </br> 4. Very </br> 5 Extremely
+            </div>
+            </div>
+
+            <!--       Description section                   -->
+            <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;margin-top: 10px;">
+                <h3>Environmental Wellbeing</h3>
+            </div>
+            <div>This subsection helps to self-assess the (potential) positive and negative impacts of the AI system on the environment. AI systems, even if they promise to help tackle some of the most pressing societal concerns, e.g. climate change, must work in the most environmentally friendly way possible. The AI system’s development, deployment and use process, as well as its entire supply chain, should be assessed in this regard (e.g. via a critical examination of the resource usage and energy consumption during training, opting for less net negative choices). Measures to secure the environmental friendliness of an AI system’s entire supply chain should be encouraged.</div>
+            <!--      end section                   -->
+
+
+
+
+            <!--      Q1    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A6Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Are there potential negative impacts of the AI system on the environment?  *
+                    </h5>
+                        {% for x in form.A6Q1 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.A6Q1_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q1                  -->
+            <!--      Q2           -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A6Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 id="sq_102_ariaTitle">
+                    <span style="position: static;">
+                        Which potential impact(s) do you identify?
+                    </span>
+                    </h5>
+                    {{ form.A6Q2 }}
+                    </div>
+                </div>
+            </div>
+            <!--      end Q2                   -->
+            <!--     Q3              -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                        <span style="position: static;">
+                            Where possible, did you establish mechanisms to evaluate the environmental impact of the AI system’s development, deployment and/or use (for example amount of energy used and carbon emissions)?  *
+                        </span>
+                    </h5>
+                    {% for radio in form.A6Q3 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.A6Q3_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q3                   -->
+            <!--      Q4           -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        Please describe the mechanisms:
+                    </span>
+                    </h5>
+                    {{ form.A6Q4 }}
+                    </div>
+                </div>
+            </div>
+            <!--      end Q4                   -->
+            <!--     Q5              -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                        <span style="position: static;">
+                            Did you define measures to reduce the environmental impact of the AI system throughout its lifecycle? *
+                        </span>
+                    </h5>
+                    {% for radio in form.A6Q5 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.A6Q5_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q5                   -->
+            <!--      Q6           -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        Please describe the measures:
+                    </span>
+                    </h5>
+                    {{ form.A6Q6 }}
+                    </div>
+                </div>
+            </div>
+            <!--      end Q6                   -->
+            <!--     Q7    red    done          -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-red-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                        <span style="position: static;">
+                            Based on your answers to the previous questions, how would you rate the risk that the AI system negatively affects the environment? *
+                        </span>
+                    </h5>
+
+                    </div>
+                        <div data-bind="css: question.cssContent">
+                            <fieldset class="sv_qcbc form-inline">
+                                <div class="btn-group">
+                                {% for radio in form.A6Q7 %}
+                                    <div style="margin-left: 20px;">
+                                        {{ radio }}
+                                    </div>
+                                {% endfor %}
+                                </div>
+                            </fieldset>
+                        </div>
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.A6Q7_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q7                   -->
+            <!--     Q8    red    done          -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-red-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                        <span style="position: static;">
+                            How would you rate the measures you have adopted to mitigate this risk? *
+                        </span>
+                    </h5>
+
+                    </div>
+                        <div data-bind="css: question.cssContent">
+                            <fieldset class="sv_qcbc form-inline">
+                                <div class="btn-group">
+                                {% for radio in form.A6Q8 %}
+                                    <div style="margin-left: 20px;">
+                                        {{ radio }}
+                                    </div>
+                                {% endfor %}
+                                </div>
+                            </fieldset>
+                        </div>
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.A6Q8_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q8                   -->
+
+
+            <!--       Description section                   -->
+            <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;margin-top: 10px;">
+                <h3>Impact on work and skills</h3>
+            </div>
+            <div>AI systems may fundamentally alter the work sphere. They should support humans in the working environment, and aim for the creation of meaningful work. This subsection helps self-assess the impact of the AI system and its use in a working environment on workers, the relationship between workers and employers, and on skills.</div>
+            <!--      end section                   -->
+
+
+            <!--      Q9    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A6Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does the AI system impact human work and work arrangements?  *
+                    </h5>
+                        {% for x in form.A6Q9 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.A6Q9_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q9                  -->
+            <!--     Q10                -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                        <span style="position: static;">
+                            Did you pave the way for the introduction of the AI system in your organisation by informing and consulting with impacted workers and their representatives (trade unions, (European) work councils) in advance?  *
+                        </span>
+                    </h5>
+                    {% for radio in form.A6Q10 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.A6Q10_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q10                   -->
+            <!--     Q11               -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                        <span style="position: static;">
+                            Did you adopt measures to ensure that the work impacts of the AI system are well understood?  *
+                        </span>
+                    </h5>
+                    {% for radio in form.A6Q11 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.A6Q11_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q11                   -->
+            <!--      Q12           -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        How?:
+                    </span>
+                    </h5>
+                    {{ form.A6Q12 }}
+                    </div>
+                </div>
+            </div>
+            <!--      end Q12                   -->
+            <!--      Q13    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A6Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Could the AI system create the risk of de-skilling of the workforce? *
+                    </h5>
+                        {% for x in form.A6Q13 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.A6Q13_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q13                  -->
+            <!--     Q14               -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                        <span style="position: static;">
+                            Did you take measures to counteract de-skilling risks?  *
+                        </span>
+                    </h5>
+                    {% for radio in form.A6Q14 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.A6Q14_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q14                   -->
+            <!--      Q15          -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        Please describe the measures:
+                    </span>
+                    </h5>
+                    {{ form.A6Q15 }}
+                    </div>
+                </div>
+            </div>
+            <!--      end Q15                   -->
+            <!--     Q16               -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                        <span style="position: static;">
+                            Did you provide training opportunities and materials for re- and up-skilling measures? *
+                        </span>
+                    </h5>
+                    {% for radio in form.A6Q16 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.A6Q16_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q16                   -->
+            <!--     Q19               -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                        <span style="position: static;">
+                            Did you ensure that workers understand how the system operates, which capabilities it has and which not?
+                        </span>
+                    </h5>
+                    {% for radio in form.A6Q19 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.A6Q19_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q19                  -->
+            <!--      Q20          -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        Please describe the measures:
+                    </span>
+                    </h5>
+                    {{ form.A6Q20 }}
+                    </div>
+                </div>
+            </div>
+            <!--      end Q20                   -->
+
+
+
+
+
+
+
+
+            <!--     Q17    red    done          -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-red-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                        <span style="position: static;">
+                            Based on your answers to the previous questions, how would you rate the risk that the AI system negatively impacts work and work arrangements? *
+                        </span>
+                    </h5>
+
+                    </div>
+                        <div data-bind="css: question.cssContent">
+                            <fieldset class="sv_qcbc form-inline">
+                                <div class="btn-group">
+                                {% for radio in form.A6Q17 %}
+                                    <div style="margin-left: 20px;">
+                                        {{ radio }}
+                                    </div>
+                                {% endfor %}
+                                </div>
+                            </fieldset>
+                        </div>
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.A6Q17_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q17                   -->
+            <!--     Q18    red    done          -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-red-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                        <span style="position: static;">
+                            How would you rate the measures you have adopted to mitigate this risk? *
+                        </span>
+                    </h5>
+
+                    </div>
+                        <div data-bind="css: question.cssContent">
+                            <fieldset class="sv_qcbc form-inline">
+                                <div class="btn-group">
+                                {% for radio in form.A6Q18 %}
+                                    <div style="margin-left: 20px;">
+                                        {{ radio }}
+                                    </div>
+                                {% endfor %}
+                                </div>
+                            </fieldset>
+                        </div>
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.A6Q18_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q18                   -->
+
+
+
+
+
+
+<button class="btn btn-primary card-btn" style="text-align: center;" name="button1"> Update </button>
+</form>
+
+</div>
+</div>
+
+
+{% endblock %}
+
+
+{% block footer%}
+{%endblock%}
+
+{%block lastk%}
+{% endblock %}

@@ -1,0 +1,209 @@
+{% extends "Shared/_layout.html" %}
+{% load static %}
+
+
+{%block head%}
+    <title> TAI - PRM - Initiation of Risk Management Process</title>
+{%endblock%}
+
+{% block navbar %}
+{% endblock%}
+
+{% block main1%}{%endblock%}
+
+{%block main2%}
+<div class="row">
+
+
+
+{% include "Shared/_survey2.html" %}
+
+
+<div class="col-md-9">
+    <div id="surveyContainer">
+        <form method='POST'>
+            {% csrf_token %}
+            {% if taiprm.status1 == True %}
+            <div class="panel-heading card-header" style="background: rgb(46, 145, 33); border-style: solid; border-color: black;" >
+                <div class="sv_header__text">
+                    <h3><span style="position: static;">You have finished with Step 1. You can continue with Step 2.</span></h3>
+                </div>
+            </div>
+        </br>
+            {% endif %}
+
+            <div class="panel-heading card-header">
+                <div class="sv_header__text">
+                    <h3><span style="position: static;">Initiation of Risk Management Process</span></h3>
+                    <h5>
+                    <span style="position: static;">
+                        This sections focuses on define important concepts that are required in order to perform a sound risk management process. This implies to evaluate if the architecture have set for the current evaluation and if the AI assets are identified. 
+                        Independent of this, a risk management framework does require: (1) a clear structure and formality for performing communication and reporting, which is also denominated as Risk Architecture (RA); (2) a definition of the strategies for implementation set by the system/organisation, denominated as Strategy (S); and (3) a set of guidelines and procedures for performing the process of managing risks, denominated as Protocols (P). The combination of these components is denominated in conjunction with the RASP strategy
+                        The following tool focuses on a specific Protocol for risk managemnt. Further information related to the approach can be found at: [reference]
+                    </span></h5>
+                </div>
+            </div>
+
+            <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; max-width: initial;margin-top: 10px;">
+                    <h3>RASP - related question </h3>
+            </div>
+            <div>
+                <div style="display: inline-block; width:80%;">Systems and organisations can face different risks that could impact their operations with a wide range of outcomes. These events can inhibit what is desired to be achieved, enhance that aim, or incorporate uncertainty into their outcomes. risk management can be seen as the process involved in identifying, assessing and controlling such risks. The risk management processes are well established, but they could be presented differently with different terminologies depending on the domain and the guidelines and frameworks used on their implementation  (such as different standards - covered in the following section).</div>
+                <div style="z-index: -2;float:right;width:19%;font-size: x-small;" class="root-green-question">
+                    Do you find these questions relevant for AI risk management? </br>
+                    1. Not at all </br> 2. Slightly </br> 3. Neither Relevant nor Irrelevant </br> 4. Very </br> 5 Extremely
+                </div>
+            </div>
+
+            <!--      Q1    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Have you defined communication channels for your risk management?
+                    </h5>
+                        {% for radio in form.T1Q1 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T1Q1_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q1                  -->
+            <!--      Q2    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Have you defined  reporting structures for your risk management?
+                    </h5>
+                        {% for radio in form.T1Q2 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T1Q2_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q2                  -->
+            <!--      Q3    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Have you clearley defined roles and responisiblities, for your risk management -- this include the decision making process?
+                    </h5>
+                        {% for radio in form.T1Q3 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T1Q3_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q3         -->
+            <!--      Q4    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Do you understand the concepts of Risk Appetite and so Have you defined them for your asset?
+                    </h5>
+                        {% for radio in form.T1Q4 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T1Q4_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q4                  -->
+            <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; max-width: initial;margin-top: 10px;">
+                <h3>AI identification</h3>
+            </div>
+            <!--      Q5    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Have you identified your AI assets (Use the AI Watch for a better system definition)?
+                    </h5>
+                        {% for radio in form.T1Q5 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T1Q5_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q5         -->
+            <!--      Q6    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Is Your AI embeddedwithin other systems or processes that run risk management processes?
+                    </h5>
+                        {% for radio in form.T1Q6 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T1Q6_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q6                  -->
+            <!--      Q7    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Have you ever run any risk management process before?
+                    </h5>
+                        {% for radio in form.T1Q7 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T1Q7_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q7                  -->
+
+
+            <button class="btn btn-primary card-btn" style="text-align: center;" name="button1"> Update </button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block footer%}
+{%endblock%}
+
+{%block lastk%}
+{% endblock %}

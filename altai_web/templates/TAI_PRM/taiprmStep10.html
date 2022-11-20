@@ -1,0 +1,266 @@
+
+{% extends "Shared/_layout.html" %}
+{% load static %}
+{% load altai_tags_filters %}
+
+
+{%block head%}
+    <title> TAI - PRM - Initiation of Risk Management Process</title>
+{%endblock%}
+
+{% block navbar %}
+{% endblock%}
+
+{% block main1%}{%endblock%}
+
+{%block main2%}
+<div class="row">
+
+
+{% include "Shared/_survey2.html" %}
+
+
+<div class="col-md-9">
+    <div id="surveyContainer">
+        <form method='POST'>
+        {% csrf_token %}
+
+            <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; max-width: initial;margin-top: 10px;">
+                    <h3> Risk Register </h3>
+            </div>
+
+            The risk register is an instrument used for recording the risk management process dedicated to identifying risks'. 
+            Its purpose is to facilitate ownership and management of each risk. At the same time, it is used to generate a record of the risks that have been identified. Furthermore, it serves as a record of the control activities that are currently undertaken or will be used to improve the control of the particular risk. The risk register will cover the significant risks facing the organisation/project and record the results of the system risk assessment.
+
+            </br>
+            {{ids}}
+            <h3>  Risk Register - Description </h3>
+
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th > Update - Date </th>
+                    <th > ID </th>
+                    <th > Linked ID </th>
+                    <th > Item </th>
+                    <th > mode/Phase/Process </th>
+                    <th > Driver </th>
+                    <th > System </th>
+                    <th > Subsystem </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                    {% for j in form.FailureModes.field.queryset %}
+                        {% for k in ids%}
+                            {% if j.id == k %}
+                                <tr>
+                                    <th style="font-size: 10px;"> {{taiprm.last_modified}} </th>
+                                    <th style="font-size: 10px;"> {{taiprm.title}}{{j.pk}} </th>
+                                    <th style="font-size: 10px;"> 
+                                        <div class="input-group" >
+                                            <input type="text" class="form-control" placeholder="Failure Mode ID" name={{j.name}} style="font-size: 10px;">
+                                        </div>
+                                    </th>
+                                    <th style="font-size: 10px;"> {{taiprm.title}} </th>
+                                    <th style="font-size: 10px;"> 
+                                        <select class="form-select" aria-label="Default select example" name="{{j.name}}">
+                                            <option selected> - </option>
+                                            <option value="1">Update</option>
+                                            <option value="2">User input</option>
+                                            <option value="3">Algorithm run</option>
+                                            <option value="4">Update</option>
+                                            <option value="5">Deployment</option>
+                                            <option value="6">Decomissioning</option>
+                                            <option value="7">Training</option>
+                                        </select>
+                                    </th>
+                                    <th style="font-size: 10px;"> {{j.driver}} </th>
+                                    <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="System" aria-label="Username" aria-describedby="basic-addon1"> </th>
+                                    <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="Subsystem" aria-label="Username" aria-describedby="basic-addon1"> </th>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            <h3>  Risk Register - Failure Mode Description and Classification </h3>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th > Failure Mode </th>
+                    <th > Failure Description </th>
+                    <th > Failure Mode Causes </th>
+                    <th > Local effect </th>
+                    <th > Cascade effect </th>
+                    <th > Global effect </th>
+                    <th > remarks </th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+
+                    {% for j in form.FailureModes.field.queryset %}
+                        {% for k in ids%}
+                            {% if j.id == k %}
+                                <tr>
+                                    <th style="font-size: 10px;"> {{j.name}} </th>
+                                    <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="Description" aria-label="Username" aria-describedby="basic-addon1">  </th>
+                                    <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="Causes" aria-label="Username" aria-describedby="basic-addon1">  </th>
+                                    <th> <input class="form-check-input" type="checkbox" name={{x.name}} value={{forloop.counter}}> </th>
+                                    <th> <input class="form-check-input" type="checkbox" name={{x.name}} value={{forloop.counter}}> </th>
+                                    <th> <input class="form-check-input" type="checkbox" name={{x.name}} value={{forloop.counter}}> </th>
+                                    <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="Remarks" aria-label="Username" aria-describedby="basic-addon1">  </th>
+                                </tr>
+                        {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h3>  Recommendations and KPIs </h3>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th > Failure Mode </th>
+                    <th > Severity </th>
+                    <th > Ocurrence </th>
+                    <th > Detection </th>
+                    <th > Detection Method </th>
+                    <th > RPN </th>
+                    <th > GRPN </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                    {% for j in form.FailureModes.field.queryset %}
+                        {% for k in ids%}
+                            {% if j.id == k %}
+                        <tr>
+                            <th style="font-size: 10px;"> {{j.name}} </th>
+                            <th> {{taiprm.S|indexing:forloop.counter0}} </th>
+                            <th> {{taiprm.O|indexing:forloop.counter0}} </th>
+                            <th> {{taiprm.D|indexing:forloop.counter0}} </th>
+                            <th> 
+                                <select class="form-select" aria-label="Default select example" name="{{j.name}}">
+                                    <option selected> - </option>
+                                    <option value="1">Training</option>
+                                    <option value="2">Visual Inspection</option>
+                                    <option value="3">Algorithm</option>
+                                    <option value="4">Alarm</option>
+                                    <option value="5">User Identification</option>
+                                    <option value="6"> Error </option>
+                                    <option value="7"> Unexpected outcome</option>
+                                </select>
+                            </th>
+                            <th> {{taiprm.RPN|indexing:forloop.counter0}} </th>
+                            <th> {{taiprm.GRPN}} </th>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            <h3>  Remarks and additional information </h3>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th > Failure Mode </th>
+                    <th > Remarks </th>
+                    <th > Recommended actions </th>
+                    <th > Correction Responsibility </th>
+                    <th > Action status </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                    {% for j in form.FailureModes.field.queryset %}
+                        {% for k in ids%}
+                            {% if j.id == k %}
+                        <tr>
+                            <th> {{j.name}}  </th>
+                            <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="Remarks" aria-label="Username" aria-describedby="basic-addon1"> </th>
+                            <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="Actions" aria-label="Username" aria-describedby="basic-addon1"> </th>
+                            <th> <input type="text" style="font-size: 10px;" name={{j.name}} class="form-control" placeholder="Responsible" aria-label="Username" aria-describedby="basic-addon1"> </th>
+                            <th> 
+                                <select class="form-select" aria-label="Default select example" name="{{j.name}}">
+                                    <option selected> - </option>
+                                    <option value="1"> In process </option>
+                                    <option value="2"> Finished </option>
+                                    <option value="3"> Delayed </option>
+                                    <option value="4"> Cancelled </option>
+                                    <option value="5"> Other </option>
+                                </select>
+                            </th>
+
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            <!--      Q1    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Do you have any better option to track failure modes?
+                    </h5>
+                        {% for radio in form.T10Q1 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T10Q1_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q1                  -->
+            <!--      Q2    ok                -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        If yes to previous question, Please explain if possible:
+                    </span>
+                    </h5>
+                    {{ form.T10Q2 }}
+                    </div>
+                </div>
+            </div>
+            <!--      Q2    ok        -->
+
+            <button class="btn btn-primary card-btn" style="text-align: center;" name="button1"> Update </button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block footer%}
+{%endblock%}
+
+{%block lastk%}
+{% endblock %}

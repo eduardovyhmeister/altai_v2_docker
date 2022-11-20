@@ -1,0 +1,87 @@
+name,explanation,driver,driver2,failuremodefamily
+Failure to robustness by poor human traits representability,Hand image recognition is strongly dependent on the hand positioning,Data ,Data ,Technical Robustness
+Failure to bias by poor representability of race traits,Image recognition is strongly dependent on human traits,Data ,Data ,Societal Wellbeing
+Failure to robustness by disruptive traits.,Detection failed by devices or traits (e.g. tattoos) that alter the recognition process,Data ,Data ,Technical Robustness
+Failure to robustness by poor representability.,Image failure to detect by lack of reverse or flipped image,Data ,Data ,Technical Robustness
+Failure to Robustness by a Quality discrepancy.,Data used for the training process show lower quality than the used for analyses,Data ,Data ,Technical Robustness
+Failure to robustness by timespan mismatch.,The time frames used for training do not match the timeframes of analyses,Data ,Data ,Technical Robustness
+Failure to robustness by timeframe granularity.,Distance between data points does not help to represent phenomena,Data ,Data ,Technical Robustness
+Failure to robustness. ,The algorithmic event happens too late or too early or the control action mistimed,Data ,Data ,Technical Robustness
+Failure to robustness by sensed timeframe mismatch.,Lag or mismatch on timeframes between information capture and use of it,Physical ,Physical ,Technical Robustness
+Failure to robustness by lack of functionality,The algorithm provides no output or control action not provided when expected,Data ,Data ,Technical Robustness
+Failure to robustness by improper functionality,The programmed control system software performs an unexpected action as defined by the user,Internal Social,Internal Social,Technical Robustness
+Failure to robustness by improper software use,Requirements set by users are not achievable by the algorithm or its scope set for training,User and System Interphase,User and System Interphase,Technical Robustness
+Failure to robustness by lack of corrective actions,Lack of identification and action associated with protecting the algorithmic robustness,Internal Social,Internal Social,Technical Robustness
+Failure to robustness by sequencing actions,Algorithmic event occurs in the wrong order or control action with incomplete sequence concept error,Algorithm,Algorithm,Technical Robustness
+Failure to robustness by algorithmic false positive,The algorithm detects an error when there is no error or control action provided when not expected,Algorithm ,Algorithm ,Technical Robustness
+Failure to robustness by algorithmic false negative,The algorithm does not detect an error when there is an error or control action provided when  expected,Algorithm,Algorithm,Technical Robustness
+Failure to robustness by incomplete logic actions,Concept  error where the software or control actions contain incomplete or overlapping logic,Algorithm ,Algorithm ,Technical Robustness
+Failure to robustness by incorrect computation from recognized input,The software computes incorrectly based on some or all inputs or control actions. The potential source of error is identified. ,Algorithm,Algorithm,Technical Robustness
+Failure to robustness by incorrect computation from unrecognized sources,The software computes incorrectly. The potential source of error is NOT identified.,Algorithm,Algorithm,Technical Robustness
+Failure to robustness by excess memory usage,The algorithm performs actions that make the system run out of memory,Algorithm,Algorithm,Technical Robustness
+Failure to robustness by inadequate hardware,The hardware is insufficient for the memory requirements of the algorithms,Physical,Physical,Technical Robustness
+Failure to robustness by interface handling,Software failure due to failure of hardware interfaces such as power supply,Physical,Physical,Technical Robustness
+Failure to security by virus attack,The software did not function on demand due to a software virus.,User and System Interphase,User and System Interphase,Security
+Failure to Societal well-being by lack of tracking metrics,No features for tracking and reporting on social trends or impacts,Internal Social Driver,Internal Social Driver,Societal wellbeing
+Failure to environmental well-being by lack of tracking metrics,No features for tracking and reporting on environmental trends or impacts,Internal Social Driver,Internal Social Driver,Environmental Wellbeing
+Failure to societal well-being by misuse of metrics,No use of features for tracking and reporting on social trends or impacts,Algorithm,Algorithm,Societal Wellbeing
+Failure to societal wellbeing by ,No use of features for tracking and reporting on environmental trends or impacts,Algorithm,Algorithm,Environmental Wellbeing
+Failure to Data Governance by lack of protective policies ,"No organizational policy for the protection of property, which is to prevent the theft of technical resources",Internal Social Driver,Internal Social Driver,Data Governance
+Failure to bias by a lack of definitions and understanding of human rights ,Lack of understanding of the importance of human rights in the organization,Internal Social Driver,Internal Social Driver,Societal Wellbeing
+Failure to bias by incomplete data sets,Lack of representability of clusters or groups by an uneven representation of data ,Algorithm,Algorithm,Societal Wellbeing
+Failure to bias elimination by lack of methods,Lack of methods or approaches to eliminate biased data from data sources known to contain them,Algorithm,Algorithm,Societal Wellbeing
+Failure to bias by undetected sources,Lack of recognition or identification of bias from data sources,Data,Data,Societal Wellbeing
+Failure to societal well-being by lack of grievances resolving,Lack of processes for resolving grievances from AI  ,Internal Social Driver,Internal Social Driver,Societal Wellbeing 
+Failure to societal wellbeing by lack AI local compliances regulation compliance,"Conditions of work with the AI do not comply with local, regional, or national law",Internal Social Driver,Internal Social Driver,Societal wellbeing
+Failure to societal well-being by lack of operating practices,"Error, no driver, or no methodologies to apply corrective actions related to fairness ",Internal Social Driver,Internal Social Driver,Societal wellbeing
+Failure to safety by lack of corrective actions,Lack of identification and action associated with protecting the algorithmic robustness,Internal Social,Internal Social,Safety
+Failure to governance by lack of corrective actions,Lack of identification and action associated with securing data governance,Internal Social,Internal Social,Data Governance
+Failure of data governance by lack of policies ,Lack of protocols for data ownership and data responsibilities ,Data,Data,Data Governance
+Failure to data governance ownership by data usability,Data is not related or relevant for the problem to be solved,Data,Data,Data Governance
+Failure to data governance by lack of format consistency,Data is supplied spread between formats that do not match,Data,Data,Data Governance
+Failure to data governance by lack of data integrity,"Data describe altered, unreal, or inconsistent trends in the information supplied. ",Data,Data,Data Governance
+Failure to data governance by lack of temporal consistency,Data is supplied sporadically,Data,Data,Data Governance
+Failure to data governance by users lack of responsibilities,"Error applying Data management and designation of responsibilities from the user part, leading to poor data quality or quantity, miss direction of data, etc.",User and System Interphase,User and System Interphase,Data Governance
+Failure to data governance by external sources ,Poor Data governance from external sources that are dependent on supplied information from the AI,Data,Data,Data Governance
+Failure to data governance by lack of data validation and its protocols,No protocols or poor application of them from data validation supplied to the system,Data,Data,Data Governance
+Failure to data governance by lack of data curation and its protocols,No protocols or poor application of them from data curation supplied to the system,Data,Data,Data Governance
+Failure to governance by lack of data tagging protocols.,"Lack of methods to track data modifications, if allowed, by tagging and users identification",Data,Data,Data Governance
+Failure to governance by lack or failure from supportive hardware.,Lack of protocols or physical components to secure data integrity and supporting track of information ,Physical ,Physical ,Data Governance
+Failure to security & data governance by the lack or poor accessibility protocols,Lack of protocol for securing user access or user recognition,User and System Interphase,User and System Interphase,Data Governance
+Failure to security by over accessibility ,"Lack of control of the user and developers' access to restrictive information, source code, and algorithmic parameters",User and System Interphase,User and System Interphase,Security
+Failure to be accountable for the lack or poor internal data responsibility,"Poor or lack of designation of responsibilities for internal data sources management, quality, veracity, and quantity.",Data ,Data ,Accountability
+Failure to be accountable for the lack or poor external data responsibility,"Poor or lack of designation of external data sources management, quality, veracity, and quantity responsibilities.",Data ,Data ,Accountability
+Failure to accountability by lack of corrective actions,Lack of identification and action associated with securing data accountability for data and algorithms,Internal Social,Internal Social,Accountability
+Failure to transparency by lack of corrective actions,Lack of identification and action associated with securing system transparency in algorithms,Internal Social,Internal Social,Transparency
+Failure to societal well-being by lack of corrective actions,Lack of identification and action associated with securing societal wellbeing for data and algorithms,Internal Social,Internal Social,Societal Wellbeing
+Failure to Human Agency and Oversight by lack of corrective actions,Lack of identification and action associated with Human Agency and Oversight,Internal Social,Internal Social,Human Agency and Oversight
+Failure to privacy by lack of corrective actions,Lack of identification and action associated with data privacy ,Internal Social,Internal Social,Privacy
+Failure to bias by lack of corrective actions ,"Lack of identification and action associated with a bias from data, developers, and algorithms",Internal Social,Internal Social,Societal Wellbeing
+Failure to users' values by lack of corrective actions,"Lack of identification and action associated with users' values and its trends for data, developers, and algorithms",Internal Social,Internal Social,Users Values
+Failure to safety by perturbation attack,The attacker modifies the query to get an appropriate response ,Users and system interphase,Users and system interphase,Safety
+Failure to safety by poisoning attack,Attacker contaminates the training phase of ML systems to get the intended result,Users and system interphase,Users and system interphase,Safety
+Failure to safety by model inversion attack,The attacker recovers the secret features used in the model,Users and system interphase,Users and system interphase,Safety
+Failure to safety by membership inference attack,Attacker infer if the given data record was part of the model?s training data set,Users and system interphase,Users and system interphase,Safety
+Failure to safety by model stealing,The attacker can recover the model by constructing careful queries ,Users and system interphase,Users and system interphase,Safety
+Failure to safety by the reprogramming ML system,Repurpose the ML system to perform a non-programmed activity,Users and system interphase,Users and system interphase,Safety
+Failure to safety by adversarial example in the physical domain,Attacker brings adversarial examples into the physical domain to subvert ML system,Users and system interphase,Users and system interphase,Safety
+Failure to safety by malicious ML provider,Malicious ML providers can query the model used by the customer and recover the customer's training data,Users and system interphase,Users and system interphase,Safety
+Failure to safety by attacks over the ML supply chain,Attacker compromises the ML model as it is being downloaded for use,Users and system interphase,Users and system interphase,Safety
+Failure to safety by backdoor ML,Malicious ML provider backdoors algorithm that does not work unless triggered,Users and system interphase,Users and system interphase,Safety
+Failure to safety by exploiting software dependencies,The attacker uses traditional software exploits to confuse ML systems,Users and system interphase,Users and system interphase,Safety
+Failure to safety by reward hacking ,Reinforcement learning systems act in unintended ways because of a mismatch between stated reward and true rewards,Users and system interphase,Users and system interphase,Safety
+Failure to safety by side effects,System disrupts the environment as it tires of attaining its goal,Users and system interphase,Users and system interphase,Safety
+Failure to robustness by distributional shifts,The system is tested in one kind of environment but is unable to adapt to changes in other kinds of environment,Algorithm,Algorithm,Technical Robustness
+Failure to safety  by natural adversarial examples,"Without attacker perturbations, the ML system fails to owe to hard harmful mining",Users and system interphase,Users and system interphase,Safety
+Failure to robustness by common corruption,"The system is not able to handle common corruption and perturbations such as tilting, zooming, or noisy images",Algorithm,Algorithm,Technical Robustness
+Failure to robustness by incomplete testing or training,The Ml systems are not tasted or trained in realistic conditions that it is meant to operate,Users and system interphase,Users and system interphase,Technical Robustness
+Failure to robustness by users violation,Violation of algorithms or methods by users intentionally or unintentionally causes failure by robustness.,Users and system interphase,Users and system interphase,Technical Robustness
+Failure to safety by users violation,Violation of algorithms or methods by users intentionally or unintentionally causes failure by safety.,Users and system interphase,Users and system interphase,Safety
+Failure to transparency by users violation,Violation of algorithms or methods by users intentionally or unintentionally causes failure by transparency.,Users and system interphase,Users and system interphase,Transparency
+Failure to accountability by users violation,Violation of algorithms or methods by users intentionally or unintentionally causes failure by accountability.,Users and system interphase,Users and system interphase,Accountability
+Failure to societal well-being by users violation,Violation of algorithms or methods by users intentionally or unintentionally causes failure by societal wellbeing.,Users and system interphase,Users and system interphase,Societal Wellbeing
+Failure to environmental well-being by users violation,Violation of algorithms or methods by users intentionally or unintentionally causes failure by environmental wellbeing.,Users and system interphase,Users and system interphase,Environmental Wellbeing
+Failure to human agency and oversight by users violation,Violation of algorithms or methods by users intentionally or unintentionally causes failure by Human agency and oversight.,Users and system interphase,Users and system interphase,Human Agency and Oversight
+Failure to privacy by users violation,Violation of algorithms or methods by users intentionally or unintentionally causes failure by privacy.,Users and system interphase,Users and system interphase,Privacy
+Failure to bias by users violation,Violation of algorithms or methods by users intentionally or unintentionally causes failure by bias.,Users and system interphase,Users and system interphase,Societal Wellbeing
+Failure to users values by users violation,Violation of algorithms or methods by users intentionally or unintentionally causes failure by users' values.,Users and system interphase,Users and system interphase,Users Values

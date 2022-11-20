@@ -1,0 +1,235 @@
+
+{% extends "Shared/_layout.html" %}
+{% load static %}
+{% load altai_tags_filters %}
+
+
+{%block head%}
+    <title> TAI - PRM - Initiation of Risk Management Process</title>
+{%endblock%}
+
+{% block navbar %}
+{% endblock%}
+
+{% block main1%}{%endblock%}
+
+{%block main2%}
+<div class="row">
+
+
+{% include "Shared/_survey2.html" %}
+
+
+<div class="col-md-9">
+    <div id="surveyContainer">
+        <form method='POST'>
+        {% csrf_token %}
+
+            <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; max-width: initial;margin-top: 10px;">
+                    <h3>Detection Classification</h3>
+            </div>
+
+            The following tables cover the detection classification ranking. As observed, there are two tables in its use. The first defines the detection capacity of failing conditions based on the products (e.g. inspection of products), while the second is based on the detection of system control failures. 
+
+            </br>
+            <h3> Detection Ranking Criteria for products </h3>
+
+            <div style="display: inline-block; width:110%;">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col"> Detection description of the Failure mode</th>
+                        <th scope="col"> Detection Rank  </th>
+                        <th scope="col"> Detection Classification </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div style="display: inline-block; width:80%;">
+                            <tr>
+                                <th> Very low (or zero) probability that the defect will be detected. Verification and controls will not or cannot detect the existence of a deficiency or defect </th>
+                                <th> 10 </th>
+                                <th> Very Low (Level A or I)</th>
+                            </tr>
+                            <tr>
+                                <th> Low probability that the defect will be detected. Verification and controls are not likely to detect the existence of a deficiency or defect. </th>
+                                <th> 8-9 </th>
+                                <th> Low (Level B or II) </th>
+                            </tr>
+                            <tr>
+                                <th> Moderate probability that the defect will be detected. Verification and controls are likely to detect the existence of a deficiency or defect </th>
+                                <th> 5-7 </th>
+                                <th> Moderate (Level C or III)</th>
+                            </tr>
+                            <tr>
+                                <th> High probability that the defect will be detected. Verification and controls have a good chance of detecting the existence of a deficiency or defect.  </th>
+                                <th> 3-4 </th>
+                                <th> High (Level D or IV)</th>
+                            </tr>
+                            <tr>
+                                <th>  Very high probability that the defect will be detected. Verification and controls will almost certainly detect the existence of a deficiency or defect. (1 in 8)    </th>
+                                <th> 1-2 </th>
+                                <th> Unlikely (Level E or V) </th>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            </br>
+            
+            
+            
+        </br>
+            <h3>  Detection Ranking based on desing and control </h3>
+            <div style="display: inline-block; width:110%;">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">  Detection description of the Failure mode </th>
+                        <th scope="col"> Severity Rank  </th>
+                        <th scope="col"> Definition </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div style="display: inline-block; width:80%;">
+                            <tr>
+                                <th> Absolutely Uncertain (The Failure will likely not be detected) - lower than 1 in 1000000 </th>
+                                <th> 10 </th>
+                                <th> Absolutely Uncertain chance the design control will detect a potential cause/mechanism and subsequent failure mode </th>
+                            </tr>
+                            <tr>
+                                <th> Very Remote - 1 in 20000 times </th>
+                                <th> 9 </th>
+                                <th> Very remote chance the design control will detect a potential cause/mechanism and subsequent failure mode </th>
+                            </tr>
+                            <tr>
+                                <th> Remote - 1 in 4000 times </th>
+                                <th> 8 </th>
+                                <th> Remote chance the design control will detect a potential cause/mechanism and subsequent failure mode </th>
+                            </tr>
+                            <tr>
+                                <th> Very Low - 1 in 1000 times </th>
+                                <th> 7 </th>
+                                <th> Very low chance the design control will detect a potential cause/mechanism and subsequent failure mode </th>
+                            </tr>
+                            <tr>
+                                <th> Low 1 in 400 times </th>
+                                <th> 6 </th>
+                                <th> Low chance the design control will detect a potential cause/mechanism and subsequent failure mode </th>
+                            </tr>
+                            <tr>
+                                <th> Moderate 1 in 80 times </th>
+                                <th> 5 </th>
+                                <th> Moderately chance the design control will detect a potential cause/mechanism and subsequent failure mode </th>
+                            </tr>
+                            <tr>
+                                <th> Moderately high 1 in 40 times </th>
+                                <th> 4 </th>
+                                <th> Moderately high chance the design control will detect a potential cause/mechanism and subsequent failure mode </th>
+                            </tr>
+                            <tr>
+                                <th> High - 1 in 20 times  </th>
+                                <th> 3 </th>
+                                <th> High chance the design control will detect a potential cause/mechanism and subsequent failure mode </th>
+                            </tr>
+                            <tr>
+                                <th> Very High - 1 in 8 times   </th>
+                                <th> 2 </th>
+                                <th> Very high chance the design control will detect a potential cause/mechanism and subsequent failure mode </th>
+                            </tr>
+                            <tr>
+                                <th> Almost Certain - 1 in 2 times  </th>
+                                <th> 1 </th>
+                                <th> Design Control will almost certainly detect a potential cause/mechanism and subsequent failure mode  </th>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Failure Mode </th>
+                    <th scope="col"> Severity Classification</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for j in form.FailureModes.field.queryset %}
+                        {% for k in ids %}
+                            {% if j.id == k %}
+                                {% with identificator=forloop.counter0 %}
+                                <tr>
+                                    <th scope="row"> {{j.name}} </th>
+                                    <th>
+                                        {% for l in range %}
+                                            <div class="form-check form-check-inline">
+                                                    {% if forloop.counter == taiprm.O|indexing:identificator %}
+                                                        <input class="form-check-input" type="radio" name={{j.name}} value={{forloop.counter}} checked>
+                                                    {% else %}
+                                                        <input class="form-check-input" type="radio" name={{j.name}} value={{forloop.counter}}>
+                                                    {% endif %}
+                                                <label class="form-check-label" for={{j.name}}>
+                                                {{forloop.counter}}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    </th>
+                                    <th></th>
+                                </tr>
+                                {% endwith %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            <!--      Q1    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Is there any recommendation/alternative for better classify/rank the detection of the AI based on their ethical risks? 
+                    </h5>
+                        {% for radio in form.T8Q1 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T8Q1_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q1                  -->
+            <!--      Q2    ok                -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        If yes to previous question, Please explain if possible:
+                    </span>
+                    </h5>
+                    {{ form.T8Q2 }}
+                    </div>
+                </div>
+            </div>
+            <!--      Q2    ok        -->
+
+            <button class="btn btn-primary card-btn" style="text-align: center;" name="button1"> Update </button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block footer%}
+{%endblock%}
+
+{%block lastk%}
+{% endblock %}

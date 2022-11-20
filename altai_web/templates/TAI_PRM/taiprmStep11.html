@@ -1,0 +1,188 @@
+{% extends "Shared/_layout.html" %}
+{% load static %}
+{% load altai_tags_filters %}
+
+
+{%block head%}
+    <title> TAI - PRM - Initiation of Risk Management Process</title>
+{%endblock%}
+
+{% block navbar %}
+{% endblock%}
+
+{% block main1%}{%endblock%}
+
+{%block main2%}
+<div class="row">
+
+
+{% include "Shared/_survey2.html" %}
+
+
+<div class="col-md-9">
+    <div id="surveyContainer">
+        <form method='POST'>
+        {% csrf_token %}
+
+
+            <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; max-width: initial;margin-top: 10px;">
+                    <h3>Treat, Terminate, Tolerate  and Transfer </h3>
+            </div>
+
+            Folllowing figure shows the flowchart associated to the 4T's of risk management. The first decision node points to the user to identify if a new failure mode needs to be included. 
+            When the user must execute the action, is driven to a decision node named will separate those new conditions and send them through checking alternatives for the 4T's.
+
+            <div>
+                <a><img src="{% static 'img/TAIPRM7.jpg' %}" style="margin-left: 10px; margin-right: 10px;margin-bottom: 10px; max-height: 420px; max-width: auto;" alt="Insight Centre for Data Analytics Logo" /> </a>
+            </div>
+
+
+
+
+            When the user do not identify new failure modes, then the decision node "modified KPI risk apetite?"" checks if there were modifications on the risk appetite. If positive, additional KPIs are considered for the risk management process. If negative, the user must evaluate "improved high e-risk?". In this case, the question guides the user to understand if e-risks have been evaluated in a robust mode generating quality enough to finalise the process. 
+            If no further system modifications or iteration on KPI analyses is identified, the process ends.
+
+            Otherwise, before to execute the activity Risk Apetite, previous historical records must be analysed to understand the improvement.
+
+            The activity Risk Apetite checks if modifications are needed on the risk apetite based on policies established for the risk management process. This means to set up further and stringent conditions for the risks under consideration or to evaluate alternatives to manage the identified risks. This activity, once finished, should start the 4T’s analysis.
+        </br>
+        </br>
+
+
+        <h3> Risk Appetite  </h3>
+
+        The risk appetite imposes the corrective actions for the risks (i.e. treat, transfer, terminate or tolerate) in the function of the risk scores and the desire of the user to deal with their risk components. Therefore, these specifications should be defined in the risk policies and easily translated to functional risk matrixes. 
+        
+        <h3> Risk Appetite in function of GRPN </h3>
+        <div style="display: inline-block; width:110%;">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col"> Risk Level </th>
+                        <th scope="col"> Tolerate Risk Score Range  </th>
+                        <th scope="col"> Treate Risk Score Range </th>
+                        <th scope="col"> Terminate Risk Score Range </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div style="display: inline-block; width:80%;">
+                            <tr>
+                                <th> High Risk </th>
+                                <th> {{form.R2_1}} </th>
+                                <th> {{form.R2_2}} </th>
+                                <th> {{form.R2_3}} </th>
+                            </tr>
+                            <tr>
+                                <th> Limited Risk </th>
+                                <th> {{form.R3_1}} </th>
+                                <th> {{form.R3_2}} </th>
+                                <th> {{form.R3_3}} </th>
+                            </tr>
+                            <tr>
+                                <th> Low Risk </th>
+                                <th> {{form.R4_1}} </th>
+                                <th> {{form.R4_2}} </th>
+                                <th> {{form.R4_3}} </th>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            </br>
+
+            * This table represent the risk levels for the different intrinsic risk levels of AI assets. If you want to modify consider, based on the definitions of Step 2 (reported in step 3), which intrinsic risk you should consider for modification. The table is read from left to right increasing from the level of previous column (+1) up to the limit set on the current column.
+
+        </br></br>
+
+        <h3> Definitions for results </h3>
+
+        Recomendations are based on some specific characteristcs of the data structure and functionalities of your AI. Please respond the following questions in order to construct your recommendations.
+
+        Some of these set of questions are relevant ONLY if the combination of the risks appetite and the RPN combined for your asset define that your AI needs treatment.
+
+         </br></br>
+            <!--      Q1    ok                -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        Have you used the ALTAI tool before "FOR THIS AI" to link their results here? (If you have not, we recommend you to run it and link it to this TAI-PRM process)
+                        If yes to previous question, Please define which ALTAI analysis you want to link to this risk management process:
+                    </span>
+                    </h5>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col"> Select </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div style="display: inline-block; width:80%;">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                            {% for x in altais %}
+                                <tr>
+                                    <th scope="row">{{x}}</th>
+                                    <th>
+                                        <input type="radio" name="altais" value={{forloop.counter0}}>
+                                    </th>
+                                </tr>
+                            {% endfor %}
+                            </div>
+                        </div>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--      Q4    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Is there any recommendation/alternative for better perform the 4T's process? 
+                    </h5>
+                        {% for radio in form.T11Q4 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T11Q4_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q4                  -->
+            <!--      Q5    ok                -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        If yes to previous question, Please explain if possible:
+                    </span>
+                    </h5>
+                    {{ form.T11Q5 }}
+                    </div>
+                </div>
+            </div>
+            <!--      Q5    ok        -->
+
+            <button class="btn btn-primary card-btn" style="text-align: center;" name="button1"> Update </button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block footer%}
+{%endblock%}
+
+{%block lastk%}
+{% endblock %}

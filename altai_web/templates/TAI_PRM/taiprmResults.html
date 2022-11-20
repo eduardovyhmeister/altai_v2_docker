@@ -1,0 +1,95 @@
+{% extends "Shared/_layout.html" %}
+{% load static %}
+{% load altai_tags_filters %}
+
+
+{%block head%}
+    <title> TAI - PRM - Initiation of Risk Management Process</title>
+{%endblock%}
+
+{% block navbar %}
+{% endblock%}
+
+{% block main1%}{%endblock%}
+
+{%block main2%}
+<div class="row">
+
+
+{% include "Shared/_survey2.html" %}
+
+
+<div class="col-md-9">
+    <div id="surveyContainer">
+        <form method='POST'>
+        {% csrf_token %}
+
+
+            <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; max-width: initial;margin-top: 10px;">
+                    <h3> Recommendations </h3>
+            </div>
+
+            The main recomendation for each requirement are displayed next. If you want a full report, please ask for its construction (as PDF file) clicking in the following button.
+            If one of the section do not display any information, is becouse there is no need (given the TAI-PRM analysis), to perform such action. The actions are recommended to be taken specially if the report action implies TREATMENT of the failure modes.
+            Dose with a higher RPN should be prioritized. and look for the failure mode driver to define the best action to be followed.
+        
+        {% if taiprm.status9 %}
+            </br>
+                <a class="btn btn-primary card-btn" style="text-align: center;" href="{% url 'myTaiprmPdf' taiprm.pk %}"> Construct a Report </a>
+            </br>
+
+            <h2> Human Agency and Oversight </h2>
+            {% for j in Resp1 %}
+                {{j}} </br> </br>
+            {% endfor %}
+            <h2> Technical robustness and safety </h2>
+            {% for j in Resp2 %}
+                {{j}} </br> </br>
+            {% endfor %}
+            <h2> Privacy and data governance </h2>
+            {% for j in Resp3 %}
+                {{j}} </br> </br>
+            {% endfor %}
+            <h2> Transparency </h2>
+            {% for j in Resp4 %}
+                {{j}} </br> </br>
+            {% endfor %}
+            <h2> Diversity, non-discrimination and fairness </h2>
+            {% for j in Resp5 %}
+                {{j}} </br> </br>
+            {% endfor %}
+            <h2> Societal and Environmental wellbeing </h2>
+            {% for j in Resp6 %}
+                {{j}} </br> </br>
+            {% endfor %}
+            <h2> Accountability </h2>
+            {% for j in Resp7 %}
+                {{j}} </br> </br>
+            {% endfor %}
+
+                <div style="display: inline-block; width:110%;">
+                </div>
+                </br>
+                <h3> Graphics </h3>
+                <div style="display: inline-block; width:110%;">
+
+                </div>
+        
+        {% else %}
+        
+        The process has not been completed to report any result
+
+        {% endif %}
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block footer%}
+{%endblock%}
+
+{%block lastk%}
+{% endblock %}

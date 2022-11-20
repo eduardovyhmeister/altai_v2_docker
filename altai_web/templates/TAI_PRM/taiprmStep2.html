@@ -1,0 +1,958 @@
+{% extends "Shared/_layout.html" %}
+{% load static %}
+
+
+{%block head%}
+    <title> TAI - PRM - Initiation of Risk Management Process</title>
+{%endblock%}
+
+{% block navbar %}
+{% endblock%}
+
+{% block main1%}{%endblock%}
+
+{%block main2%}
+<div class="row">
+
+
+{% include "Shared/_survey2.html" %}
+
+
+<div class="col-md-9">
+    <div id="surveyContainer">
+        <form method='POST'>
+        {% csrf_token %}
+                {% if taiprm.status2 == True %}
+                <div class="panel-heading card-header" style="background: rgb(46, 145, 33); border-style: solid; border-color: black;" >
+                    <div class="sv_header__text">
+                        <h3><span style="position: static;">You have finished with Step 2. You can continue with Step 3.</span></h3>
+                    </div>
+                </div>
+                </br>
+                {% endif %}
+            <div class="panel-heading card-header">
+                <div class="sv_header__text">
+
+
+                    <h3><span style="position: static;"> Recommendations based on previous section answer; please consider:  </span></h3>
+                    <h5>
+                        {% if taiprm.T1Q1 == "No" %}
+                        <span style="position: static;"> It is necessary to maintain a well defined communication chanels to secure the decision making process to be correct and, at the same time the establishement of the way the transfer of analyses and documentation is performed between stakeholders involved in the risk management process. The definition of the communication channels is part of the risk architecture and thus should be established before the use of any risk management process.
+                        </span></h5>
+                    </br>
+                    {% endif %}
+                    {% if taiprm.T1Q2 == "No" %}
+                    <h5>
+                        <span style="position: static;"> It is necessary to maintain a range of e-risk management records, including details of various risk management activities, including administration, risk response and improvement plans, event reports and recommendations, and risk performance and certification reports. These documents, following regular risk management processes, could consider the following documentation and risk architecture responsibility: 
+                            (1) Risk management documentation manual and administration records and responsibilities - E-risk board; (2)  Risk response and improvement plans - ERC; (3) Event reports, incidents, investigations and recommendations - MC; Risk performance and monitoring reports - DM
+                        </span></h5>
+                    </br>
+                    {% endif %}
+                    {% if taiprm.T1Q3 == "No" %}
+                    <h5>
+                        <span style="position: static;"> The risk management architecture defines the committee structure and its: roles and responsibilities, internal reporting requirements, external reporting controls, and risk management assurance arrangements. An exemplification that could be modified to implement e-risk processes, in function of industrial complexity and its policy, is given in the following figure. This architecture is not mandatory and could follow different structures based on the complexity of the users enterprise. 
+                            The role considering are the <a href="{% url 'about'%}"> Divisional Management (DM) </a>, the <a href="{% url 'about'%}"> Management Committee (MC) </a>, the  <a href="{% url 'about'%}">audit committee</a>, and the  <a href="{% url 'about'%}">e-risk bard </a> (or team leader)
+                        </span></h5>
+                        <div>
+                            <a><img src="{% static 'img/TAIPRM4.jpg' %}" style="margin-left: 10px; margin-right: 10px;margin-bottom: 10px; max-height: 400px; max-width: auto;" alt="Insight Centre for Data Analytics Logo" /> </a>
+                        </div>
+                        <h5>The roles involves also define the decision making process. based on the previous roles established as recomendation you can find the <a href="{% url 'about'%}"> Decision-Making Process Table </a> as a guide at the end of the about and nomenclature section. Decision-Making Considerations shows a general description of the decision making criteria involved on the definitions involved at each level. The following table describes an organizational recommendation level for decision-making based on the Architecture. The first column capitalizes on the components that will lead the strategic, tactical, and operational decision-making. The second column defines the goals of the decision-making approaches (that should not violate those defined by the previous hierarchical components). The third column defines the criteria for the decision making. The strategic, higher-level, should secure that decision making processes follow the policies objectives, follows the capacity established for the risk management (i.e. secure that risk management has an implementation level in accordance to the level of risk embedded on the AI elements), and is flexible to modifications depending on current tendency and consistency.
+                        </h5>
+                        </br>
+                        {% endif %}
+                    </div>
+            </div>
+        </br>
+
+
+            {% if taiprm.T1Q5 == "Yes" %}
+
+            <!-- Here start , previous was just the information -->
+
+            <div class="panel-heading card-header" >
+                <div class="sv_header__text">
+                    <h3><span style="position: static;">E-risk identification and Classification</span></h3>
+                </div>
+            </div>
+
+            <div class="sv_qstn" style="flex: 1 1 100%; width: 100%; max-width: initial;margin-top: 40px;">
+                    <h3>System Identification</h3>
+            </div>
+            <div>
+                <div style="display: inline-block; width:80%;">the first process identifies or confirms that AI elements are considered within the system or subsystem under evaluation. 
+                    If an AI algorithm is considered for evaluation or is embedded within the system, the e-Risk Identification and Classification process takes place (covered next). This process focuses on defining the AI elements' intrinsic level of risk under regulatory conditions. This classification is based on the AI act and includes modification if new regulations are defined for the AI elements.</div>
+                    <div style="z-index: -2;float:right;width:19%;font-size: x-small;" class="root-green-question">
+                        Do you find these questions relevant for your AI asset and its process of risk management? </br> </br>
+                        1. Not at all </br> 2. Slightly </br> 3. Neither Relevant nor Irrelevant </br> 4. Very </br> 5 Extremely
+                    </div>
+            </div>
+            
+            <div class="sv_qstn" style="flex: 1 1 100%; width: 100%; max-width: initial;margin-top: 40px;">
+                <h3>System Identification - Unacceptable Risk AI</h3>
+            </div>
+
+            <!--      Q1    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Q1: Are there any new regulations that should be integrated in the framewrok?
+                    </h5>
+                        {% for x in form.T2Q1 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q1_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q1                  -->
+
+            <!--      Q2    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Q2: If NO to previous question, Were you able to calssify the components acording to its risk level?
+                    </h5>
+                        {% for x in form.T2Q2 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q2_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q2                  -->
+
+            <!--     Qx         -->
+            <div style="display: inline-block; width:80%;margin-left: 50px;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-red-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 >
+                        <span style="position: static;">If Yes to previous question, please state the risk level of your AI asset. 
+                        </span>
+                    </h5>
+                    </div>
+                        <div data-bind="css: question.cssContent">
+                            <fieldset class="sv_qcbc form-inline">
+                                <div class="btn-group">
+                                {% for x in form.intrinsic_risk %}
+                                    <div style="margin-left: 20px;">
+                                        {{ x }}
+                                    </div>
+                                {% endfor %}
+                                </div>
+                            </fieldset>
+                        </div>
+                </div>
+            </div>
+            <!--      end Qx                   -->
+
+            <!--      Q3    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Q3: If YES to Q1, Are these new regulations modifying the risk levels defined for AI components ([refere AI ACT]) and its identification?
+                    </h5>
+                        {% for x in form.T2Q3 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q3_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q3                  -->
+
+            <!--      Q4    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Q4: Under your perspective does your system contravening [human-rights]?
+                    </h5>
+                        {% for x in form.T2Q4 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q4_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q4                  -->
+
+
+            <!--      Q5    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Question 5: Does your system contravening [freedom, democracy, the rules of laws, solidarity, justice, right of life, or equality]?
+                    </h5>
+                        {% for x in form.T2Q5 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q5_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q5                  -->
+
+            <!--      Q6    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Question 6: Does your system involves social scoring?
+                    </h5>
+                        {% for x in form.T2Q6 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q6_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q6                  -->
+
+            <!--      Q7    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your system involes decision making processes or suggestion to users that can undermine personal decisions or behaviours?
+                    </h5>
+                        {% for x in form.T2Q7 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q7_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q7                  -->
+
+            <!--      Q8    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your system involves to manipulate or use explorative pracices of any personal data or protected information?
+                    </h5>
+                        {% for x in form.T2Q8 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q8_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q8            -->
+
+            <!--      Q9    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your AI involves real time biometric identification with the purpose of law enforcement?
+                    </h5>
+                        {% for x in form.T2Q9 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q9_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q9            -->
+
+            <!--      Q10    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Question 10: Are you aware if there any new definition that established an AI elements as one with unacceptable risk under the AI act that could impact your asset?
+                    </h5>
+                        {% for x in form.T2Q10 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q10_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q10          -->
+
+            <!--      Q11    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Question 11: Do you have any recommendation that established an AI elements as one with unacceptable risk under the AI act?
+                    </h5>
+                        {% for x in form.T2Q11 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q11_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q11          -->
+
+            <!--      Q12       done           -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        If yes to previous question, Please explain:
+                    </span>
+                    </h5>
+                    {{ form.T2Q12 }}
+                    </div>
+                </div>
+            </div>
+            <!--      end Q12                   -->
+
+
+
+
+            <div class="sv_qstn" style="flex: 1 1 100%; width: 100%; max-width: initial;margin-top: 40px;">
+                <h3>System Identification - High Risk AIs</h3>
+            </div>
+            <!--      Q13    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your Ai involves Biometric Identificaiont and Categorization of Natural Persons?
+                    </h5>
+                        {% for x in form.T2Q13 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q13_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q13          -->
+            <!--      Q14    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your Ai involves managementd and operation of <a> critical infrastrucutres </a>?
+                    </h5>
+                        {% for x in form.T2Q14 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q14_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q14          -->
+            <!--      Q15    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your AI involves education and/or vocational training?
+                    </h5>
+                        {% for x in form.T2Q15 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q15_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q15          -->
+            <!--      Q16    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your Ai invovles employment workers, management, and acces to self employment?
+                    </h5>
+                        {% for x in form.T2Q16 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q16_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q16       -->
+            <!--      Q17    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your AI involves access to private and public services and benefits?
+                    </h5>
+                        {% for x in form.T2Q17 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q17_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q17       -->
+            <!--      Q18    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your AI involves migration, asylum, and border control management?
+                    </h5>
+                        {% for x in form.T2Q18 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q18_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q18       -->
+            <!--      Q19    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your AI involves law enforcement?
+                    </h5>
+                        {% for x in form.T2Q19 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q19_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q19       -->
+            <!--      Q20    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your Ai involves administration of justice and/or democratic processes?
+                    </h5>
+                        {% for x in form.T2Q20 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q20_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q20       -->
+            <!--      Q21    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your AI involves that operationally can produce any harmful conditions (physically or mentally) to users when performing out of the normality?
+                    </h5>
+                        {% for x in form.T2Q21 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q21_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q21       -->
+            <!--      Q22    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your AI involves to be used as safety component of product or processes?
+                    </h5>
+                        {% for x in form.T2Q22 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q22_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q22       -->
+            <!--      Q23    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your AI perform autonomously and can udnermine human safety or human stated interests?
+                    </h5>
+                        {% for x in form.T2Q23 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q23_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q23       -->
+            <!--      Q24   ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Can your AI have the potential to produce directly or indirectly a sever impact on environmental conditions of violate any local/regional environmental regulation?
+                    </h5>
+                        {% for x in form.T2Q24 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q24_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q24       -->
+            <!--      Q25    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Can you AI when performing outside the expected behoaviour producee severe impact in human resources?
+                    </h5>
+                        {% for x in form.T2Q25 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q25_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q25       -->
+            <!--      Q26    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Can your AI when performing outside the expected behaviour producee impact on comunity developments?
+                    </h5>
+                        {% for x in form.T2Q26 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q26_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q26       -->
+            <!--      Q27    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Can your AI when performing outside the expected behaviour produce <a> severe </a> impact in the workplace?
+                    </h5>
+                        {% for x in form.T2Q27 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q27_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q27       -->
+            <!--      Q28    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Can your AI when performing outside the expected behaviour act outside the regulatori corporate responsibilities?
+                    </h5>
+                        {% for x in form.T2Q28 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q28_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q28     -->
+            <!--      Q29    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Question 29: Can your AI when performing outside the expected behaviour act outside the regulatori corporate values?
+                    </h5>
+                        {% for x in form.T2Q29 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q29_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q29     -->
+            <!--      Q30    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Question 30: Are you aware if there any new definition that established an AI elements as one with high risk under the AI act that could impact your asset?
+                    </h5>
+                        {% for x in form.T2Q30 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q30_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q30          -->
+            <!--      Q31    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Do you have any recommendation that established an AI elements as one with unacceptable risk under the AI act?
+                    </h5>
+                        {% for x in form.T2Q31 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q31_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q31          -->
+            <!--      Q32       done           -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        If yes to previous question, Please explain:
+                    </span>
+                    </h5>
+                    {{ form.T2Q32 }}
+                    </div>
+                </div>
+            </div>
+            <!--      end Q32          -->
+
+
+            <div class="sv_qstn" style="flex: 1 1 100%; width: 100%; max-width: initial;margin-top: 40px;">
+                <h3>System Identification - Limited Risk AI</h3>
+            </div>
+            <!--      Q33    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Can your AI when performing outside the expected behaviour produce <a> manegable </a> impact in the workspace or in Human Resources?
+                    </h5>
+                        {% for x in form.T2Q33 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q33_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end 33        -->
+            <!--      Q34    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your AI have the potential to produce directly or indirectly a mangeable impact on environmental conditions (including local or regioanl regulations).
+                    </h5>
+                        {% for x in form.T2Q34 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q34_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end 34          -->
+            <!--      Q35    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your AI interface contains a chatbot or any system that is not evident to its user that has been interacting with an AI?
+                    </h5>
+                        {% for x in form.T2Q35 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q35_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end 35          -->
+            <!--      Q36   ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your Ai involves to replace humanly-performed tasks and could require supervision?
+                    </h5>
+                        {% for x in form.T2Q36 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q36_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end 36          -->
+            <!--      Q37    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your AI could downgrade (but not violate) conditions that are under regulations?
+                    </h5>
+                        {% for x in form.T2Q37 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q37_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end 37     -->
+            <!--      38      -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        If yes to previous question, could you, if possible, expand? the type of regulation? (not required):
+                    </span>
+                    </h5>
+                    {{ form.T2Q38 }}
+                    </div>
+                </div>
+            </div>
+            <!--      end Q38       -->
+            <!--      Q39   ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your AI could downgrade (but not violate) conditions that are under regulations, corporate responsibility, or corporate values?
+                    </h5>
+                        {% for x in form.T2Q39 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q39_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end 39     -->
+             <!--      40       -->
+             <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        If yes to previous question, could you, if possible, expand ? the type of regulation? (not required):
+                    </span>
+                    </h5>
+                    {{ form.T2Q40 }}
+                    </div>
+                </div>
+            </div>
+            <!--      end Q40         -->
+            <!--      Q41    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Are you aware if there any new definition that established an AI elements as one with limited risk under the AI act that could impact your asset?
+                    </h5>
+                        {% for x in form.T2Q41 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q41_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end 41          -->
+            <!--      42    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Do you have any recommendation that established an AI elements as one with limited risk under the AI act?
+                    </h5>
+                        {% for x in form.T2Q42 %}
+                            <div style="margin-left: 20px;">
+                                {{ x }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:19.00%;">
+                {% for x in form.T2Q42_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end 42  done        -->
+            <!--      43      done           -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        If yes to previous question, Please explain if possible:
+                    </span>
+                    </h5>
+                    {{ form.T2Q43 }}
+                    </div>
+                </div>
+            </div>
+            <!--      end Q42       -->
+
+
+            {% else %}
+
+
+            <h5>Please establish the type of AI assets you are workin with before continue with the risk management process. We reocommend to analyse it based on the AI watch classification process. </h5>
+
+
+
+            {% endif %}
+
+            <button class="btn btn-primary card-btn" style="text-align: center;" name="button1"> Update </button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block footer%}
+{%endblock%}
+
+{%block lastk%}
+{% endblock %}

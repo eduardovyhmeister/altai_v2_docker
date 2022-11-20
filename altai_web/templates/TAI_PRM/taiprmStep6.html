@@ -1,0 +1,244 @@
+{% extends "Shared/_layout.html" %}
+{% load static %}
+{% load altai_tags_filters %}
+
+
+{%block head%}
+    <title> TAI - PRM - Initiation of Risk Management Process</title>
+{%endblock%}
+
+{% block navbar %}
+{% endblock%}
+
+{% block main1%}{%endblock%}
+
+{%block main2%}
+<div class="row">
+
+
+{% include "Shared/_survey2.html" %}
+
+
+<div class="col-md-9">
+    <div id="surveyContainer">
+        <form method='POST'>
+        {% csrf_token %}
+
+
+            <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; max-width: initial;margin-top: 10px;">
+                    <h3>Ranking Severity Classification</h3>
+            </div>
+
+            A severity classification is helpful to provide a qualitative measure of the potential resulting consequences from a failing item.
+            Therefore, a severity classification should be assigned for each failure mode and analysed component. If no categories can be defined, 
+            a similarity with loss statements based upon loss of system inputs or outputs shall be developed and included within the FMEA/FMECA ground rules.
+            A multi-failure description should determine the severity level that considers each ethical-based FMECA issue. 
+            The table shows a proposition based on considerations of ethical and security-based concerns. 
+            This table will feed the critical matrix by setting severity categories with a critical number.
+
+            The severity code imposes the definition of low, minor, and significant injury. these levels imply:
+
+            <li> Low-level exposure: An exposure at less than 25% of published Threshold Limit Value (TLV)  or Short Term Exposure Limit (STEL). </li>
+            <li> Minor Injury: A slight burn, light electrical shock, minor cut or pinch. First aid can handle these and are not OSHA recordable or considered as lost time cases. </li>
+            <li> Significant Injury: Requires medical attention other than first aid. This is a medical risk condition. </li>
+
+            Prioritization is given to the system based on the ES&H scale. If the levels based on this scale are acceptable under the institution's risk appetite, the severity ranking based on customer satisfaction could be used next
+
+        </br>
+        <h3> Severity Classification basecd on ES&H Severity Code</h3>
+
+            <div style="display: inline-block; width:110%;">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Severity designation of the Failure mode and its Effect Description</th>
+                        <th scope="col"> Severity Rank  </th>
+                        <th scope="col"> Failure severity Classification </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div style="display: inline-block; width:80%;">
+                            <tr>
+                                <th> <li>Failure would cause loss of life or total disability to personnel </li>
+                                    <li>Failure would cause identifiably catastrophic damage to the system and repairs that are beyond the capability of the user or contractor to resolve the effects</li>
+                                    <li>Failure would lead to violating any regulatory consideration set as fundamental rights.</li>
+                                    <li>Failure would lead to violating principles that cause a non-recoverable and undermining of the users and environmental wellbeing</li>
+                                    </th>
+                                <th>10</th>
+                                <th>Catastrophic (Level A or I)</th>
+                            </tr>
+                            <tr>
+                                <th> 
+                                    <li>Failure would cause severe disabling injury or severe occupational illness to personnel </li>
+                                    <li>Failure would cause identifiably critical damage to the system and extensive repairs to resolve the effects.</li>
+                                    <li>Failure would lead to violating principles that cause severe undermining of the users, and environmental wellbeing</li>
+                                    <li>can cause fire or environmentally adverse conditions.</li>
+                                    </th>
+                                <th>8-9</th>
+                                <th>Critical (Level B or II)</th>
+                            </tr>
+                            <tr>
+                                <th> <li>Failure would cause a minor injury or minor occupational illness to personnel that may require hospitalisation, but failure is not disabling </li>
+                                    <li>Failure would cause identifiably marginal damage to the system an acceptable level of repairs and downtime to resolve effects</li>
+                                    <li>Failure would violate principles that will undermine the users and environmental well-being that could be managed with proper implementation actions.</li>
+                                    <li>The severity level is high and activates alarms, safeguards, and requirements of special system attention.  </li>
+                                    <li>Can cause controllable environmentally adverse conditions.  </li>
+                                    </th>
+                                <th>6-7</th>
+                                <th>Marginal (Level C or III)</th>
+                            </tr>
+                            <tr>
+                                <th> <li>Failure would cause minor injury to personnel, but those injuries would not require hospitalisation, or failure would cause minor occupational illness </li>
+                                    <li>Failure would cause identifiable minor damage to the system and minor repairs and short downtime to resolve effects</li>
+                                    <li>Failure would lead to violating principles that cause minor undermining of the users and environmental wellbeing</li>
+                                    <li>The severity level is high and activates alarms, safeguards, and requirements of special system attention.  </li>
+                                    </th>
+                                <th>3-5</th>
+                                <th>Minor (Level D or IV)</th>
+                            </tr>
+                            <tr>
+                                <th> <li>Failure would cause less than minor injury and no occupational illness </li>
+                                    <li>Failure would cause negligible damage to the system and insignificant or no downtime to resolve effects</li>
+                                    <li>Failure is not credible.</li>
+                                    <li>There is no impact on the environment.</li>
+                                    </th>
+                                <th>1-2</th>
+                                <th>Negligible (Level E or V)</th>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            </br>
+
+
+            <h3> Severity Classification basecd on User / Customer Satisfaction </h3>
+            <div style="display: inline-block; width:110%;">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Severity designation of the Failure mode and its Effect Description</th>
+                        <th scope="col"> Severity Rank  </th>
+                        <th scope="col"> Failure severity Classification </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div style="display: inline-block; width:80%;">
+                            <tr>
+                                <th> Failure will result in significant customer/user dissatisfaction and cause non-system operation or non-compliance with government regulations                                    </th>
+                                <th>10</th>
+                                <th>Catastrophic (Level A or I)</th>
+                            </tr>
+                            <tr>
+                                <th> Failure will result in a high degree of customer/user dissatisfaction and cause non-system functionality </th>
+                                <th>8-9</th>
+                                <th>Critical (Level B or II)</th>
+                            </tr>
+                            <tr>
+                                <th> Failure will result in customer/usser dissatisfaction, annoyance and deterioration of part or system performance </th>
+                                <th>6-7</th>
+                                <th>Marginal (Level C or III)</th>
+                            </tr>
+                            <tr>
+                                <th> Failure will result in slight customer/user annoyance and slight deterioration of part or system performance</th>
+                                <th>3-5</th>
+                                <th>Minor (Level D or IV)</th>
+                            </tr>
+                            <tr>
+                                <th> Failure is of such minor nature that the customer/user will not detect the failure  </th>
+                                <th>1-2</th>
+                                <th>Negligible (Level E or V)</th>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+
+                Plase, for each of the Failure Modes Identified, define the Severity classification.
+        </br></br>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Failure Mode </th>
+                    <th scope="col"> Severity Classification</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for j in form.FailureModes.field.queryset %}
+                        {% for k in ids %}
+                            {% if j.id == k %}
+                                {% with identificator=forloop.counter0 %}
+                                <tr>
+                                    <th scope="row"> {{j.name}} </th>
+                                    <th>
+                                        {% for l in range %}
+                                            <div class="form-check form-check-inline">
+                                                    {% if forloop.counter == taiprm.S|indexing:identificator %}
+                                                        <input class="form-check-input" type="radio" name={{j.name}} value={{forloop.counter}} checked>
+                                                    {% else %}
+                                                        <input class="form-check-input" type="radio" name={{j.name}} value={{forloop.counter}}>
+                                                    {% endif %}
+                                                <label class="form-check-label" for={{j.name}}>
+                                                {{forloop.counter}}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    </th>
+                                    <th></th>
+                                </tr>
+                                {% endwith %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            <!--      Q1    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Is there any recommendation/alternative for better classify/rank the severity of the AI based on their ethical risks? 
+                    </h5>
+                        {% for radio in form.T6Q1 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T6Q1_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q1                  -->
+            <!--      Q2    ok                -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        If yes to previous question, Please explain if possible:
+                    </span>
+                    </h5>
+                    {{ form.T6Q2 }}
+                    </div>
+                </div>
+            </div>
+            <!--      Q2    ok        -->
+
+            <button class="btn btn-primary card-btn" style="text-align: center;" name="button1"> Update </button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block footer%}
+{%endblock%}
+
+{%block lastk%}
+{% endblock %}

@@ -1,0 +1,55 @@
+{%load static %}
+
+
+
+    <div class="col-md-3">
+        <h1>ALTAI for {{altai.title}} </h1>
+
+
+        <a class="btn btn-primary card-btn bg-ecblue" style="text-align: center; background-color:  #00458f;" href="{% url 'myAltaisHome' pk=altai.pk %}">Notes </a>
+        <br />
+        <h2>Sections of the ALTAI</h2>
+        <nav class="navbar bg-primary navbar-dark navbar-ec bg-ecblue req-menu">
+            <ul class="navbar-nav bg-ecblue">
+
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myAltaiReq1' pk=altai.pk %}">
+                    {% if altai.status1 == False %} <i class="fas fa-clipboard">{% else %} <i class="fas fa-clipboard-check">{% endif %}</i>Human Agency and Oversight</a>
+                </li>
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myAltaiReq2' pk=altai.pk %}">
+                    {% if altai.status2 == False %} <i class="fas fa-clipboard">{% else %} <i class="fas fa-clipboard-check">{% endif %}</i>Technical Robustness and Safety?</a>
+                </li>
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myAltaiReq3' pk=altai.pk %}">
+                    {% if altai.status3 == False %} <i class="fas fa-clipboard">{% else %} <i class="fas fa-clipboard-check">{% endif %}</i>Privacy and Data Governance</a>
+                </li>
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myAltaiReq4' pk=altai.pk %}">
+                    {% if altai.status4 == False %} <i class="fas fa-clipboard">{% else %} <i class="fas fa-clipboard-check">{% endif %}</i>Transparency</a>
+                </li>
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myAltaiReq5' pk=altai.pk %}">
+                    {% if altai.status5 == False %} <i class="fas fa-clipboard">{% else %} <i class="fas fa-clipboard-check">{% endif %}</i>Diversity, Non-Discrimination and Fairness</a>
+                </li>
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myAltaiReq6' pk=altai.pk %}">
+                    {% if altai.status6 == False %} <i class="fas fa-clipboard">{% else %} <i class="fas fa-clipboard-check">{% endif %}</i>Societal and Environmental Well-being</a>
+                </li>
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myAltaiReq7' pk=altai.pk %}">
+                    {% if altai.status7 == False %} <i class="fas fa-clipboard">{% else %} <i class="fas fa-clipboard-check">{% endif %}</i>Accountability</a>
+                </li>
+            </ul>
+        </nav>
+
+        <h5 class="mt-3">Legend of progression symbols</h5>
+        <ul>
+            <li>
+                <i class="fas fa-clipboard" aria-label="Empty requirement"></i>Incomplete
+            </li>
+            <li>
+                <i class="fas fa-clipboard-check" aria-label="Requirement completed"></i>Completed and validated
+            </li>
+        </ul>
+
+        <h5>Resources</h5>
+        <a href="https://ec.europa.eu/newsroom/dae/document.cfm?doc_id=60419">Ethics Guidelines for Trustworthy AI</a>
+        <h2 class="mt-3">See the results </h2>
+        <a class="btn btn-primary card-btn" style="text-align: center;  background-color:  #00458f;" href="{% url 'myAltaiResult' pk=altai.pk %}">Results and Recommendations </a>
+
+        <br />
+    </div>

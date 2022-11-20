@@ -1,0 +1,202 @@
+{% extends "Shared/_layout.html" %}
+{% load static %}
+{% load altai_tags_filters %}
+
+
+{%block head%}
+    <title> TAI - PRM - Initiation of Risk Management Process</title>
+{%endblock%}
+
+{% block navbar %}
+{% endblock%}
+
+{% block main1%}{%endblock%}
+
+{%block main2%}
+<div class="row">
+
+
+{% include "Shared/_survey2.html" %}
+
+
+<div class="col-md-9">
+    <div id="surveyContainer">
+        
+        {% if taiprm.status5 == True %}
+            <div class="panel-heading card-header" style="background: rgb(46, 145, 33); border-style: solid; border-color: black;" >
+                <div class="sv_header__text">
+                    <h3><span style="position: static;">  You can continue with the following steps. For each of the Failure modes selected you have to rank them.</span></h3>
+                </div>
+            </div>
+        </br>
+            {% endif %}
+
+            <div class="panel-heading card-header">
+                <div class="sv_header__text">
+                    <h3><span style="position: static;"> Recommendations based on previous section answer; please consider: </span></h3>
+
+                    {% if taiprm.T3Q12 == "Yes" and taiprm.T3Q13 == "Yes"%}
+                    <h5><span style="position: static;">
+                        The values you are considered for your AI asset cannot be implemented. Avoid AI development, implementation or use if the values cannot be modified.
+                    {% endif %}
+
+                    {% if taiprm.T3Q14 == "Yes" %}
+                        <h5><span style="position: static;"> Define a scheme of values to define hierarchically what values you should be handle first or with a higher weighting of interest. Add these values (defined in previous step) as a parallel e-risk component based with a given importance of incorporation based on the hierarchy. 
+                        </span></h5>
+                    {% endif %}
+
+                    {% if taiprm.T3Q15 == "Yes" %}
+                        <h5><span style="position: static;">
+                            For each value to be incorporated define a qualitative or quantitative metric tht will define the state of the value and would help tracking its status.
+                        </span></h5>
+                    {% endif %}
+
+
+                    </div>
+            </div>
+        </br>
+
+
+
+
+            {% if taiprm.FMEA_OR_CA %}
+
+
+            <div class="panel-heading card-header">
+                <div class="sv_header__text">
+                    <h3><span style="position: static;">Some Definitions</span></h3>
+                    <h5>
+                    <span style="position: static;"> Finding failure modes is based on the assumption that if an artefact stops operating as expected, technical and social features are translated into observable conditions or contingencies measured by supporting protocols - AI
+                        technical and non-technical operational modes. Furthermore, for the analysis, the conditions or contingencies possess similarities that allow them to
+                        be grouped by a driver for failures. These can be physical, internal social, data, user/system interface, and algorithm. The physical driver encompass:
+                        power supply, communication/data link cables, robot parts, wearable, lenses, and sensors. The internal social drivers are related to the stakeholders’ values and biases imposed over the AI component, for example, those related
+                        to enterprise social responsibilities. The data drivers relate to any source
+                    
+                        that could drive the failure of the trustworthiness of AI elements from data, for example, biases, quality, quantity, and security. The user and system
+                        interface driver is linked to inadequate use of user interfaces and system inputs, including the absence of information display, tutorials and guidelines.
+                        Additionally, any trustworthy/ethical consideration of the human-AI interaction, like the excess of trust from users on repeated AI operations, can be308
+                        included. Finally, the algorithm drivers are the processes to be followed in problem-solving operations performed by the AI artefact.
+
+                        The following Figure schematises the approach to link failure modes with the operational modes
+                    
+                    
+                    </span></h5>
+                </div>
+            </div>
+            </br>
+
+            <div>
+                <a><img src="{% static 'img/TAIPRM6.jpg' %}" style="margin-left: 10px; margin-right: 10px;margin-bottom: 10px; max-height: 280px; max-width: auto;" alt="Insight Centre for Data Analytics Logo" /> </a>
+            </div>
+            
+            <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; max-width: initial;">
+                    <h3> Identify Failure Modes </h3>
+            </div>
+            <div>
+                <div style="display: inline-block; width:80%;">
+                    Plese select from the list the failure modes that apply to your AI assset. If you want to add new failure modes, please use the add button at the end of the page.
+
+                </div>
+                
+
+
+            </div>
+            {{ taiprm.SelectedFailureModes }}
+
+            <form method='POST'>
+                {% csrf_token %}
+
+                <div style="display: inline-block; width:110%;">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col"> Select </th>
+                            <th scope="col"> Driveer </th>
+                            <th scope="col"> Definition </th>
+    
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div style="display: inline-block; width:80%;">
+                            {% for x in form.FailureModes.field.queryset %}
+                                    <tr>
+                                        <th scope="row">{{x.name}}</th>
+                                        <th>
+                                            {% if lista|indexing:forloop.counter0 %}
+                                                <input class="form-check-input" type="checkbox" name={{x.name}} value={{forloop.counter}} checked="checked">
+                                            {% else %}
+                                                <input class="form-check-input" type="checkbox" name={{x.name}} value={{forloop.counter}}>
+                                            {% endif %}
+                                        </th>
+                                        <th>{{x.driver}}</th>
+                                        <th>{{x.explanation}}</th>
+                                    </tr>
+
+                            {% endfor %}
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+            
+            <a class="btn btn-outline-secondary" href="{% url 'newFailureMode' pk=taiprm.pk %}" > Add new Failure Modes </a>
+
+
+
+
+            <!--      Q1    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Following steps consider to (1) IDentify Fialure Dection Methods, Analyse the effects, Identify Corrective Actions, And Rank each identified Failure mode.
+                        </br>
+                        Do you have enough information to perform these tasks?
+                    </h5>
+                        {% for radio in form.T5Q1 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div style="z-index: -2;float:right;width:19%;font-size: x-small;" class="root-green-question">
+                Do you find these questions relevant for your AI asset and its process of risk management? </br> </br>
+                1. Not at all </br> 2. Slightly </br> 3. Neither Relevant nor Irrelevant </br> 4. Very </br> 5 Extremely
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T5Q1_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q1                  -->
+            <button class="btn btn-primary card-btn" style="text-align: center;" name="button1"> Update </button>
+            </form>
+
+
+
+        </form>
+
+
+        {% else %}
+
+        
+
+
+        {% endif %}
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block footer%}
+{%endblock%}
+
+{%block lastk%}
+{% endblock %}

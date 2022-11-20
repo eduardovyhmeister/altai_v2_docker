@@ -1,0 +1,179 @@
+
+{% extends "Shared/_layout.html" %}
+{% load static %}
+{% load altai_tags_filters %}
+
+
+{%block head%}
+    <title> TAI - PRM - Initiation of Risk Management Process</title>
+{%endblock%}
+
+{% block navbar %}
+{% endblock%}
+
+{% block main1%}{%endblock%}
+
+{%block main2%}
+<div class="row">
+
+
+{% include "Shared/_survey2.html" %}
+
+
+<div class="col-md-9">
+    <div id="surveyContainer">
+        <form method='POST'>
+        {% csrf_token %}
+
+            <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; max-width: initial;margin-top: 10px;">
+                    <h3> Percentage of each failure condition </h3>
+            </div>
+
+            The Risk Priority Number index (RPN) with respect to a concrete failure mode enables the normalisation of the AI artefacts risks. The formula to calculate it is in Equation the following equation, corresponding to the multiplication of three indexes: severity, likelihood and detection ranking
+            </br></br>
+            <h4>RPN = S*O*D </h4> 
+            </br></br>
+            The higher the RPN is, the higher the risk involved in the analysed failure mode for that AI component, therefore the item or component can be identified as a source of a failing condition with different degrees of impact.
+            Furthermore, to evaluate the global risk of an AI artifact on different failure modes (GRPN_item - Global Risk Priority Number index), it is needed to perform the sum of the RPN of each item $i$ to its corresponding failure mode ratio as proposed in the following equation:
+            </br></br>
+            <h4> GRPN = &#8721; RPN<sub>i</sub>* &#945;<sub>i</sub> </h4> 
+            </br></br>
+            Where i represents the different failure mode linked to the same source; n is the number of failure modes of an specific component; and &#945;_i is the failure mode ratio and represents the part attributed to a concrete failure mode if the failure materializes. This means the percentage of the AI artifact to fail with an specific failure mode. It can be calculated from historical data or an expert/oracle on its absence following as follows:
+            Please provide the values for the Faiure Mode Ratio, Maxe sure that those from the same driver sum up to 1.
+            </br></br>
+            <h3> Failure Mode Ratio </h3>
+
+            </br>
+        </br>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Failure Mode </th>
+                    <th scope="col"> Severity Classification </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                    {% for j in form.FailureModes.field.queryset %}
+                        {% for k in ids%}
+                            {% if j.id == k %}
+                                {% with identificator=forloop.counter0 %}
+                                    <tr>
+                                        <th scope="row"> {{j.name}} </th>
+                                        <th>
+                                            <div class="form-group">
+                                            <label for="formControlRange">Set the Range</label>
+                                            {% if taiprm.alpha|indexing:forloop.counter0 != 0.5 %}
+                                            <input type="range" min="0" max="1" step="0.05" class="form-control-range" value={{taiprm.alpha|indexing:forloop.counter0}} name={{j.name}} id="formControlRange" onInput="$('#{{j.name}}').html($(this).val())">
+                                                <span id={{j.name}}>{{taiprm.alpha|indexing:forloop.counter0}}<!-- Default value --></span>
+                                            {% else %}
+                                            <input type="range" min="0" max="1" step="0.05" class="form-control-range" name={{j.name}} id="formControlRange" onInput="$('#{{j.name}}').html($(this).val())">
+                                                <span id={{j.name}}>0.5<!-- Default value --></span>
+                                            {% endif %}
+                                        </div>
+
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                {% endwith %}
+                        {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            <!--      Q1    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Is there any recommendation/alternative for better Define the interaction of Failure modes for the ethical risks? 
+                    </h5>
+                        {% for radio in form.T9Q1 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T9Q1_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q1                  -->
+            <!--      Q2    ok                -->
+            <div style="display: inline-block; width:80%;">
+                <div data-bind="css: question.koRootCss(), style: { paddingLeft: question.paddingLeft, paddingRight: question.paddingRight, flexBasis: renderWidth, flexGrow: 1, flexShrink: 1, width: renderWidth, minWidth:  $data.minWidth, maxWidth: $data.maxWidth}, attr: { id: question.id, name: question.name, role: question.ariaRole, 'aria-labelledby': question.hasTitle ? question.ariaTitleId : null }" class="sv_qstn root-blue-question" id="sq_108" name="HAO-Q3-B" role="radiogroup" aria-labelledby="sq_108_ariaTitle" style="flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;">
+                    <div data-bind="css: question.cssHeader">
+                    <h5 data-bind="css: cssTitle, attr: { 'aria-label': question.locTitle.renderedHtml, id: ariaTitleId }" aria-label="Did you put in place procedures to avoid that <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.&quot;>end-users</a> over-rely on the <a href=&quot;#&quot; data-toggle=&quot;tooltip&quot; title=&quot;Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems). &quot;>AI system</a>?     <a  tabindex=&quot;0&quot;  role=&quot;button&quot;  class=&quot;text-nowrap&quot; data-html=&quot;true&quot; data-trigger=&quot;focus&quot; data-placement=&quot;bottom&quot; data-toggle=&quot;popover&quot; title=&quot;Help&quot; aria-label=&quot;Help navigationButton&quot;data-content=&quot;AI systems should support individuals in making better, more informed choices in accordance with their goals. AI systems can sometimes be deployed to shape and influence human behaviour through mechanisms that may be difficult to detect, since they may harness sub-conscious processes, including various forms of unfair manipulation, deception, herding and conditioning, all of which may threaten individual autonomy. The overall principle of user autonomy must be central to the system’s functionality.<br /><br />EGTAI p. 16.&quot; ><i class=&quot;far fa-question-circle&quot;></i></a >" id="sq_108_ariaTitle">
+                    <span style="position: static;">
+                        If yes to previous question, Please explain if possible:
+                    </span>
+                    </h5>
+                    {{ form.T9Q2 }}
+                    </div>
+                </div>
+            </div>
+            <!--      Q2    ok        -->
+            <!--      Q3    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Do you have information related to the conditional probability and the overall system failing ratio due to different causes  over the operating time to perform the criticality analysis?                       
+                    </h5>
+                        {% for radio in form.T9Q3 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T9Q3_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q3                  -->
+            <!--      Q4    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Do you want to run the Critical Analysis?*
+                        <div>* The criticality analysis will be run as a qualitative one if there is no specific data provided for being qualitative. </div>
+                    </h5>
+                        {% for radio in form.T9Q4 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T9Q4_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q4           -->
+
+            
+
+            <button class="btn btn-primary card-btn" style="text-align: center;" name="button1"> Update </button>
+        </form>
+    </div>
+</div>
+
+
+
+
+Do you have information related to the conditional probability and the overall system failing ratio due to different causes  over the operating time to perform the criticality analysis?
+
+{% endblock %}
+
+
+{% block footer%}
+{%endblock%}
+
+{%block lastk%}
+{% endblock %}

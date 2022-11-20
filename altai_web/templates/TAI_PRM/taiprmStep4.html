@@ -1,0 +1,352 @@
+{% extends "Shared/_layout.html" %}
+{% load static %}
+
+
+{%block head%}
+    <title> TAI - PRM - Initiation of Risk Management Process</title>
+{%endblock%}
+
+{% block navbar %}
+{% endblock%}
+
+{% block main1%}{%endblock%}
+
+{%block main2%}
+<div class="row">
+
+
+{% include "Shared/_survey2.html" %}
+
+
+<div class="col-md-9">
+    <div id="surveyContainer">
+        <form method='POST'>
+        {% csrf_token %}
+        {% if taiprm.status4 == True %}
+            <div class="panel-heading card-header" style="background: rgb(46, 145, 33); border-style: solid; border-color: black;" >
+                <div class="sv_header__text">
+                    <h3><span style="position: static;"> You can run your management process (next step) using {% if taiprm.FMEA_OR_CA%} Failure Mode and Effect Analysis {% else %} Criticality Analysis {% endif %}</span></h3>
+                </div>
+            </div>
+        </br>
+            {% endif %}
+
+            <div class="panel-heading card-header">
+                <div class="sv_header__text">
+                    <h3><span style="position: static;"> Recommendations based on previous section answer; please consider: </span></h3>
+
+                    {% if taiprm.T3Q12 == "Yes" and taiprm.T3Q13 == "Yes"%}
+                    <h5><span style="position: static;">
+                        The values you are considered for your AI asset cannot be implemented. Avoid AI development, implementation or use if the values cannot be modified.
+                    {% endif %}
+
+                    {% if taiprm.T3Q14 == "Yes" %}
+                        <h5><span style="position: static;"> Define a scheme of values to define hierarchically what values you should be handle first or with a higher weighting of interest. Add these values (defined in previous step) as a parallel e-risk component based with a given importance of incorporation based on the hierarchy. 
+                        </span></h5>
+                    {% endif %}
+
+                    {% if taiprm.T3Q15 == "Yes" %}
+                        <h5><span style="position: static;">
+                            For each value to be incorporated define a qualitative or quantitative metric tht will define the state of the value and would help tracking its status.
+                        </span></h5>
+                    {% endif %}
+
+
+                    </div>
+            </div>
+        </br>
+
+
+
+
+
+
+
+            <div class="panel-heading card-header">
+                <div class="sv_header__text">
+                    <h3><span style="position: static;">Some Definitions</span></h3>
+                    <h5>
+                    <span style="position: static;"> This section describes in detail the activity e-risk management process.
+                        Three considerations are related to the ISO 31000: (i) the ethical management process encompasses the use of the context provided by the ISO 31000475
+                        and defined in previous steps; (ii) the activities related to the ISO 31000 in
+                        communication and consultation are not included in the process but in the RASP architecture; and, finally, (iii) the ethical risk management process
+                        contains the ISO-defined Monitoring and Review process defined as a main component after the Risk Evaluation and Risk Treatment. hThe following figure shows a high level diagram of the process</span></h5>
+                </div>
+            </div>
+            </br>
+
+            <div>
+                <a><img src="{% static 'img/TAIPRM5.jpg' %}" style="margin-left: 10px; margin-right: 10px;margin-bottom: 10px; max-height: 280px; max-width: auto;" alt="Insight Centre for Data Analytics Logo" /> </a>
+            </div>
+            
+            <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; max-width: initial;">
+                    <h3> Establishing the context </h3>
+            </div>
+            <div>
+                <div style="display: inline-block; width:79%;">
+                    In this activity, the user must identify the requirements, definitions and interconnections that the AI artifact requires with respect to its usage by humans and other AI artifacts. More specifically, the activity encompasses 485
+                    the following actions:
+                </br>
+
+                    <li>  Connectivity with other components and subsystems: Users must define the effects of the AI artifact on the overall system. This is key
+                        for cases when AI artifacts are running concurrently on a system to perform system outputs. Additionally, users can understand the effects
+                        of the failure modes on the parts where it is connected, improving the accountability and transparency. The connectivity must be established
+                        in software architecture documentation. </li>
+                    <li> Dependencies: This item refers to the hierarchical extension of the components. Users must track cascade effects on risk analysis, for
+                        example using root cause analysis.  </li>
+                    <li> Constraint and Context: Constraints are set up as requirements to control functionalities, input behaviours, system outcomes, and components values. If relevant, these constraints can be established with the physical context, enhancing the system security especially on AI 
+                        user interaction.  </li>
+                    <li> Diagrams: Diagrams should be constructed based on the information collected in Connectivity with other components and subsystems, Dependencies, and Human-AI and Human-UI interactions. Combining these activities with the feedback of previously mentioned contextualization steps, the system security, safety, accountability, and transparency will improve.  </li>
+
+
+                </div>
+
+                <div style="z-index: -2;float:right;width:19%;font-size: x-small;" class="root-green-question">
+                    Do you find these questions relevant for your AI asset and its process of risk management? </br> </br>
+                    1. Not at all </br> 2. Slightly </br> 3. Neither Relevant nor Irrelevant </br> 4. Very </br> 5 Extremely
+                </div>
+
+                <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; max-width: initial;">
+                    <h3> Merging with other Risk Management Process </h3>
+                 </div>
+
+                {% if taiprm.T1Q6 == "Yes" %}
+                        <div style="display: inline-block; width:80%;">
+                            When several RMP instances are identified the TAI-RMP uses FMEA as a driver for risk assessment. FMEA can flexibly incorporate other RPMs. Therfore merging with already running risk management techniques allows increase adoption. The mechanism
+                            is through encapsulating these within the Design Failure Modes and Effects Analysis (DFMEA) and Process Failure Modes and Effects Analysis (PFMEA) processes. To merging with these processes, the risk values (as RMP or after performing the criticality analyses) can be sent to these other processes to alter the risk concidertions of an asset that is or has incorporated AI wihtin it.
+                            These definitions will be reminded later on when the estimation of relevan indexes are performed.
+                        </div>
+                {% else %}
+                    <div style="display: inline-block; width:80%;">
+                        As you defined, you are not running other process in parallel. Do not consider this step.
+                    </div>
+                {% endif %}
+
+                <div class="sv_qstn" id="sq_100" name="title" style="flex: 1 1 100%; width: 100%; max-width: initial;">
+                    <h3> Define if FMEA or CA for your analysis  </h3>
+                 </div>
+
+                 In this activity, the FMEA and Criticality Analysis (CA) are used as core components for risk analysis. This is the main focus of this step. Further information can be found in the <a> How to TAI-PRM </a>
+
+                
+                
+            </div>
+
+            <!--      Q1    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Have you defined if you will be using Failure modes and Effect Analysis or Criticalyty Analysis? 
+                    </h5>
+                        {% for radio in form.T4Q1 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T4Q1_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q1                  -->
+
+            <!--      Q2    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Are you interested into identify the different failure modes? - This means that the user is interested on detecting every situation that might trigger risk outcomes.
+                    </h5>
+                        {% for radio in form.T4Q2 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T4Q2_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q2                 -->
+
+            <!--      Q3    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Are your number of possible failing conditions large and require a deeper evaluation?
+                    </h5>
+                        {% for radio in form.T4Q3 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T4Q3_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q3                 -->
+
+            <!--      Q4    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Are your number of possible failing conditions large and require a deeper evaluation?
+                    </h5>
+                        {% for radio in form.T4Q4 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T4Q4_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q4             -->
+
+            <!--      Q5    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your AI require human-itnervention or regular software updates?
+                    </h5>
+                        {% for radio in form.T4Q5 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T4Q5_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q5             -->
+
+            <!--      Q6    ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does your AI is in the early stages of development?
+                    </h5>
+                        {% for radio in form.T4Q6 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T4Q6_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q6         -->
+
+             <!--      Q7   ok    -->
+             <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Do you expect in the future to fuerther modify the system - Different functionalities or interactions might change?
+                    </h5>
+                        {% for radio in form.T4Q7 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T4Q7_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q7        -->
+
+            <!--      Q8   ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Is your AI part of a critical system that can have severe impact on the process?
+                    </h5>
+                        {% for radio in form.T4Q8 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T4Q8_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q8        -->
+
+            <!--      Q9   ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Does the AI have human interactions in the form of recomendations, humans - in -the - loop, human - in - command, or other human intervention that could lead to human errors/confusion/unexpected decision-making processes?
+                    </h5>
+                        {% for radio in form.T4Q9 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T4Q9_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q9        -->
+
+            <!--      Q10   ok    -->
+            <div style="display: inline-block; width:80%;">
+                <div class="sv_qstn" name="A1Q1" role="radiogroup" aria-labelledby="sq_102_ariaTitle" style="margin-top: 20px; flex: 1 1 100%; width: 100%; min-width: 300px; max-width: initial;background: whitesmoke; border-style: solid; border-color: black; border-radius: 10px; margin: 5px 0 5px 0;">
+                    <h5 id="sq_102_ariaTitle">
+                        Do you expect cascade events that require identifiction of root causes?
+                    </h5>
+                        {% for radio in form.T4Q10 %}
+                            <div style="margin-left: 20px;">
+                                {{ radio }}
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group-sm root-green-question" style="z-index: -2;float:right;width:18.00%;">
+                {% for x in form.T4Q10_2%}
+                <a style="font-size:13px; width: 70px; text-align: center;"> {{x}}</a>
+                {% endfor %}
+            </div>
+            <!--      end Q10        -->
+
+            <button class="btn btn-primary card-btn" style="text-align: center;" name="button1"> Update </button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block footer%}
+{%endblock%}
+
+{%block lastk%}
+{% endblock %}

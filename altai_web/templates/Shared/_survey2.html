@@ -1,0 +1,79 @@
+{%load static %}
+
+    <div class="col-md-3">
+        <h1>TAI - PRM for {{taiprm.title}} </h1>
+
+
+        <a class="btn btn-primary card-btn bg-ecblue" style="text-align: center; background-color:  #00458f;" href="{% url 'myTaiprmHome' pk=taiprm.pk %}">Notes </a>
+        <br />
+        <h2>Sections of the TAI - PRM</h2>
+        <nav class="navbar bg-primary navbar-dark navbar-ec bg-ecblue req-menu">
+            <ul class="navbar-nav bg-ecblue">
+
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myTaiprmStep1' pk=taiprm.pk %}">
+                    {% if taiprm.status1 == False %} <i class="fas fa-clipboard">{% else %} <i class="fas fa-clipboard-check">{% endif %}</i>Step1: Initiation of Risk Management Process </a>
+                </li>
+
+                {% if taiprm.status1 %}
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myTaiprmStep2' pk=taiprm.pk %}">
+                    {% if taiprm.status2 == False %} <i class="fas fa-clipboard">{% else %} <i class="fas fa-clipboard-check">{% endif %}</i>Step2: E-Risk identification and Classification</a>
+                </li>
+                {% endif %}
+                {% if taiprm.status2 %}
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myTaiprmStep3' pk=taiprm.pk %}">
+                    {% if taiprm.status3 == False %} <i class="fas fa-clipboard">{% else %} <i class="fas fa-clipboard-check">{% endif %}</i>Step3: AI Scope Definition and Analysis of Values</a>
+                </li>
+                {% endif %}
+                {% if taiprm.status3 %}
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myTaiprmStep4' pk=taiprm.pk %}">
+                    {% if taiprm.status4 == False %} <i class="fas fa-clipboard">{% else %} <i class="fas fa-clipboard-check">{% endif %}</i>Step4: e-risk management process - Establishing Context, Merging with other RMP, and Defining Criticality Analysis or FMEA </a>
+                </li>
+                {% endif %}
+                {% if taiprm.status4 %}
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myTaiprmStep5' pk=taiprm.pk %}">
+                    {% if taiprm.status5 == False %} <i class="fas fa-clipboard">{% else %} <i class="fas fa-clipboard-check">{% endif %}</i> Step5: e-risk management process - FMEA or Criticality Analysis </a>
+                </li>
+                {% endif %}
+                {% if taiprm.status5 %}
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myTaiprmStep6' pk=taiprm.pk %}">
+                    {% if taiprm.status6 == False %} <i class="fas fa-clipboard">{% else %} <i class="fas fa-clipboard-check">{% endif %}</i> Step6: e-risk management process - Ranking </a>
+                </li>
+                {% endif %}
+                {% if taiprm.status6 %}
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myTaiprmStep7' pk=taiprm.pk %}">
+                    {% if taiprm.status6 == False %}<i class="fas fa-clipboard">{% else %}<i class="fas fa-clipboard-check">{% endif %}</i> Step6: e-risk management process - Root Cause Analysis </a>
+                </li> 
+                {% endif %}
+                {% if taiprm.status7 %}
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myTaiprmStep10' pk=taiprm.pk %}">
+                    {% if taiprm.status7 == False %}<i class="fas fa-clipboard">{% else %}<i class="fas fa-clipboard-check">{% endif %}</i> Step7: Risk Register </a>
+                </li> 
+                {% endif %}
+                {% if taiprm.status8 %}
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myTaiprmStep10' pk=taiprm.pk %}">
+                    {% if taiprm.status8 == False %}<i class="fas fa-clipboard">{% else %}<i class="fas fa-clipboard-check">{% endif %}</i> Criticality Analysis </a>
+                </li> 
+                {% endif %}
+                {% if taiprm.status9 %}
+                <li class="nav-item nav-item-clear req-menu-item"><a class="nav-link req-menu-link" href="{% url 'myTaiprmStep11' pk=taiprm.pk %}">
+                    {% if taiprm.status9 == False %}<i class="fas fa-clipboard">{% else %}<i class="fas fa-clipboard-check">{% endif %}</i> Step8: Treat, Terminate, Tolerate, Transfer </a>
+                </li> 
+                {% endif %}
+            </ul>
+        </nav>
+
+        <h5 class="mt-3">Legend of progression symbols</h5>
+        <ul>
+            <li>
+                <i class="fas fa-clipboard" aria-label="Empty requirement"></i>Incomplete
+            </li>
+            <li>
+                <i class="fas fa-clipboard-check" aria-label="Requirement completed"></i>Completed and validated
+            </li>
+        </ul>
+
+        <h2 class="mt-3">See the results </h2>
+        <a class="btn btn-primary card-btn" style="text-align: center;  background-color:  #00458f;" href="{% url 'myTaiprmResult' pk=taiprm.pk %}">Results and Recommendations </a>
+
+        <br />
+    </div>

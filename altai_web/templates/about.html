@@ -1,0 +1,150 @@
+{% extends "Shared/_layout.html" %}
+{% load static %}
+
+{%block head%}
+    <title> Fundamental Rights - ALTAI</title>
+{%endblock%}
+
+
+{% block navbar %}
+
+    {% if request.user.is_authenticated %}
+        {% include "Shared/_Navbarin.html" %}
+    {% else %}
+        {% include "Shared/_NavbarOut.html" %}
+    {% endif %}
+
+{% endblock%}
+
+{%block main2%}
+
+        <div>
+        <h1> About</h1>
+        <p>
+            This site has been built to foster the implementation of regulatory frameworks within AI assets in different domains. This site is built thanks to the support of the European Comission on a project Named ASSISTANT.
+            The main participants in the build of the sitea and the development of the TAI -RMP are:
+
+            <li> Gabrien Gonzalez Castane - Insight Centre of Data Analytics </li>
+            <li> Eduardo Vyhmeister Bastidas - Insight Centre of Data Analytics  </li>
+            <li> Barry O' Sullivan - Insight Centre of Data Analytics  </li>
+
+        </p>
+            The ALTAI tool component built in this site do not intend to compete nor diverge the atention of the main component. The fundamentals are into improve it by extracting and analyzing feedback from its implementation.
+        </div>
+        
+        </br>
+
+        <h1>
+            Nomenclature
+        </h1>
+
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Definition</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <th>AI system</th>
+                <td>Artificial intelligence (AI) systems are software (and possibly also hardware) systems designed by humans that, given a complex goal, act in the physical or digital dimension by perceiving their environment through data acquisition, interpreting the collected structured or unstructured data, reasoning on the knowledge, or processing the information, derived from this data and deciding the best action(s) to take to achieve the given goal. AI systems can either use symbolic rules or learn a numeric model, and they can also adapt their behaviour by analysing how the environment is affected by their previous actions. As a scientific discipline, AI includes several approaches and techniques, such as machine learning (of which deep learning and reinforcement learning are specific examples), machine reasoning (which includes planning, scheduling, knowledge representation and reasoning, search, and optimization), and robotics (which includes control, perception, sensors and actuators, as well as the integration of all other techniques into cyber-physical systems).</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <th> End-users </th>
+                <td> An end-user is the person that ultimately uses or is intended to ultimately use the AI system. This could either be a consumer or a professional within a or public or private organisation. The end user stands in contrast to users who support or maintain the product, such as system administrators, database administrators, information technology experts, software professionals and computer technicians.</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <th>Subject</th>
+                <td>A subject is a person or a group of persons affected by the AI system (such as the recipient of benefits where the decision to grant or reject benefits is underpinned by an AI-system, or the general public for facial recognition).</td>
+                <td> - </td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <th>AI bias</th>
+                <td>AI (or algorithmic) bias describes systematic and repeatable errors in a computer system that create unfair outcomes, such as favoring one arbitrary group of users over others. Bias can emerge due to many factors, including but not limited to the design of the algorithm or the unintended or unanticipated use or decisions relating to the way data is coded, collected, selected or used to train the algorithm. Bias can enter into algorithmic systems as a result of pre-existing cultural, social, or institutional expectations; because of technical limitations of their design; or by being used in unanticipated contexts or by audiences who are not considered in the software's initial design. AI bias is found across platforms, including but not limited to search engine results and social media platforms, and can have impacts ranging from inadvertent privacy violations to reinforcing social biases of race, gender, sexuality, and ethnicity.</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <th>AI Designer</th>
+                <td>AI designers bridge the gap between AI capabilities and user needs. For example, they can create prototypes showing some novel AI capabilities and how they might be used if the product is deployed, prior to the possible development of the AI product. AI designers also work with development teams to better understand user needs and how to build technology that addresses those needs. Additionally, they can support AI developers by designing platforms to support data collection and annotation, ensuring that data collection respects some properties (such as safety and fairness).</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <th>AI Developer</th>
+                <td>An AI developer is a human being who performs some of the tasks included in the AI development. AI development is the process of conceiving, specifying, designing, training, programming, documenting, testing, and bug fixing involved in creating and maintaining AI applications, frameworks, or other AI components. It includes writing and maintaining the AI source code, as well as all that is involved between the conception of the software through to the final manifestatio and use of the software.</td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <th>Divisional Management (DM) </th>
+                <td>A division is a part of the system (process, business, or organisation) that perform a critical role. Under the AI perspective, these divisions could be integrated as a whole main component (i.e. an AI division) or as sub-components that focus on a specific AI asset functionality (e.g. Training, data curation, optimisation, etc.). The divisional management is incorporated by different stakeholders that perform the internal activities related to risk management. These could include performing the risk assessment process, preparing and keeping up the documentation, setting priorities for the division in terms of the focus on risk analysis and treatment, and keeping updated KPIs related to the AI elements.</td>
+              </tr>
+              <tr>
+                <th scope="row">6</th>
+                <th>Management Committee (MC) </th>
+                <td>This role corresponds to a division's leader (in terms of e-risk management) who could integrate the reports. Additionally, the MC provision and monitor the actions of the DM, securing that tasks involved in risk assessment are performed correctly. The MC also allocates responsibilities to its staff based on the definitions established by the e-risk board. Within the processes involved in the divisions, the MC contemplates internal audits that are defined by an Audit Committee (AC). In this way, the MC is responsible for constructing full documentation dedicated to the Events response and Recommendations.The MC reports the accumulated information from the division to the Executive Risk Committee and proves to them with recommendations and suggestions provided from the DM and AC that can alter or modify the risk management process or the actions implemented so far e-risks.</td>
+              </tr>
+              <tr>
+                <th scope="row">7</th>
+                <th>Executive e-Risk Committee </th>
+                <td>the  Executive e-Risk Committee (ERC - lead by the risk manager). The e-risk manager is responsible for the corporate learning that has to take place to understand the benefit of e-risk management. In addition, as the person responsible for the RASP, the e-risk manager will be responsible for developing the strategy, systems and procedures by which the required e-risk management outcomes for the organisation are achieved.
+                    These ERC should be covered by an expert (or group of experts) that will have a deep understanding on AI, the company objectives, and the present regulatory considerations, requirements and constraints of AI systems. These requirements are given since the ERC will have the primary responsibility of performing the analyses of the e-risk management processes and recommend actions to reduce the e-risk levels or to terminate or tolerate the AI current conditions under the perspectives of the e-risk management process (based on the company e-risk appetite and regulations of AI). Further responsibilities include ensuring that \replaced[id=author]{RM}{risk management} is embedded within all AI systems or subsystems, independent of the innate level of risk (High, moderate or low risk - those classified as unacceptable should not be implemented) and reviewing the profiles of the DM groups to secure that a variety of experts with different expertise are integrated into the process of risk assessment.
+                    Additionally, the ERC keep track of the whole process and all the documentation generated on the risk management process.</td>
+              </tr>
+              <tr>
+                <th scope="row">8</th>
+                <th>Audit Cometee </th>
+                <td>Internal audit has its expertise in the evaluation of controls and the testing of their efficiency and effectiveness. The RASP should set out the details of how this close co-operation will be achieved in practice. The internal audit should be driven by experts that will cover the requirements of AI and, at the same time, those requirements established by responsible AI definitions.</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+
+          <h1>
+            Decision - Making Architecture Recommendation
+        </h1>
+
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Managemenet</th>
+                <th scope="col">Goals</th>
+                <th scope="col">Criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <th>Strategic (e-risk board)</th>
+                <td>General Decision-Making</td>
+                <td>Objectives, capacity, transparency, budget, flexibility, consistency (value-based)</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <th>Tactical (Executive Risk Committee)</th>
+                <td>nalysis, Treatment Options</td>
+                <td>Cost Effective, Time Effective</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <th>Operational (Divisional Management)</th>
+                <td>Implement, Quality Control, Program and products to reduce risk</td>
+                <td>Operational</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+{% endblock %}
+
+
+
+
+{%block lastk%}
+{% endblock %}
